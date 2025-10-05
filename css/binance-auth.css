@@ -1,0 +1,344 @@
+/* New authentic Binance auth styles */
+:root {
+  --bg-primary: #0b0e11;
+  --bg-secondary: #181a20;
+  --bg-tertiary: #2b3139;
+  --text-primary: #eaecef;
+  --text-secondary: #848e9c;
+  --border-color: #2b3139;
+  --binance-yellow: #f3ba2f;
+  --binance-yellow-hover: #f0b90b;
+  --input-bg: #2b3139;
+  --input-border: #474d57;
+  --input-focus: #f3ba2f;
+  --error-color: #f6465d;
+  --success-color: #0ecb81;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+}
+
+.auth-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.binance-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.binance-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.qr-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.qr-btn:hover {
+  background: var(--bg-tertiary);
+}
+
+.auth-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  color: var(--text-primary);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+.form-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.form-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--input-focus);
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.password-toggle:hover {
+  color: var(--text-primary);
+}
+
+.checkbox-group {
+  margin: 4px 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 2px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--binance-yellow);
+}
+
+.checkbox-label a {
+  color: var(--binance-yellow);
+  text-decoration: none;
+}
+
+.checkbox-label a:hover {
+  text-decoration: underline;
+}
+
+.form-error {
+  display: none;
+  padding: 12px;
+  background: rgba(246, 70, 93, 0.1);
+  border: 1px solid var(--error-color);
+  border-radius: 4px;
+  color: var(--error-color);
+  font-size: 14px;
+}
+
+.form-error.show {
+  display: block;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 48px;
+  background: var(--binance-yellow);
+  border: none;
+  border-radius: 4px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--binance-yellow-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 24px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-btn {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.social-btn:hover {
+  background: var(--bg-tertiary);
+}
+
+.social-btn i {
+  font-size: 18px;
+}
+
+.auth-footer {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.create-account-link,
+.login-link {
+  color: var(--binance-yellow);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.create-account-link:hover,
+.login-link:hover {
+  text-decoration: underline;
+}
+
+.entity-link {
+  color: var(--binance-yellow);
+  cursor: pointer;
+}
+
+.entity-link:hover {
+  text-decoration: underline;
+}
+
+.divider-dot {
+  margin: 0 8px;
+}
+
+.support-btn-wrapper {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+}
+
+.support-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--binance-yellow);
+  border: none;
+  color: #000;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(243, 186, 47, 0.3);
+  transition: all 0.2s;
+}
+
+.support-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(243, 186, 47, 0.4);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .auth-wrapper {
+    padding: 16px;
+  }
+
+  .auth-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .form-input,
+  .btn-primary,
+  .social-btn {
+    height: 44px;
+  }
+
+  .support-btn-wrapper {
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .support-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
