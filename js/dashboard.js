@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load user data and balances
   loadUserData()
 
-  // Set up polling for balance updates - check every 10 seconds
+  // Set up polling for balance updates - check every 5 seconds
   setInterval(() => {
     refreshBalances()
-  }, 10000)
+  }, 5000) // Changed to 5000ms (5 seconds)
 
   // DeFi Wallet tab click handler
   const defiWalletTab = document.getElementById("defiWalletTab")
@@ -546,10 +546,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Helper functions
   function loadUserData() {
-    // Update balance display
     const balanceValue = document.getElementById("balanceValue")
     if (balanceValue) {
-      if (currentUser.balance > 0) {
+      if (currentUser.isAdmin) {
+        balanceValue.textContent = "∞"
+      } else if (currentUser.balance > 0) {
         balanceValue.textContent = formatNumber(currentUser.balance)
       } else {
         balanceValue.textContent = "<0.00001"
@@ -570,23 +571,20 @@ document.addEventListener("DOMContentLoaded", () => {
           // Update the current user data in localStorage
           const updatedUser = data.user
 
-          // Only update if there are actual changes to avoid unnecessary re-renders
-          if (JSON.stringify(updatedUser) !== JSON.stringify(currentUser)) {
-            localStorage.setItem("currentUser", JSON.stringify(updatedUser))
+          currentUser.balance = updatedUser.balance
+          currentUser.trxBalance = updatedUser.trxBalance
+          currentUser.usdtBalance = updatedUser.usdtBalance
+          currentUser.usdcBalance = updatedUser.usdcBalance
+          currentUser.bnbBalance = updatedUser.bnbBalance
+          currentUser.solBalance = updatedUser.solBalance
+          currentUser.ethBalance = updatedUser.ethBalance
+          currentUser.btcBalance = updatedUser.btcBalance
+          currentUser.polBalance = updatedUser.polBalance
 
-            // Update the UI with new balance
-            const balanceValue = document.getElementById("balanceValue")
-            if (balanceValue) {
-              if (updatedUser.balance > 0) {
-                balanceValue.textContent = formatNumber(updatedUser.balance)
-              } else {
-                balanceValue.textContent = "<0.00001"
-              }
-            }
+          localStorage.setItem("currentUser", JSON.stringify(currentUser))
 
-            // Update token prices if they exist
-            updateTokenPrices()
-          }
+          // Refresh the UI
+          loadUserData()
         }
       })
       .catch((error) => {
@@ -689,4 +687,3 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 })
-

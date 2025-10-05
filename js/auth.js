@@ -59,6 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
+            localStorage.removeItem("currentUser")
+            localStorage.removeItem("token")
+
             // Store user data in localStorage
             localStorage.setItem("currentUser", JSON.stringify(data.user))
             localStorage.setItem("token", data.token)
@@ -83,20 +86,35 @@ document.addEventListener("DOMContentLoaded", () => {
   // Register form handling
   const registerForm = document.getElementById("registerForm")
   if (registerForm) {
+    const togglePassword = document.getElementById("togglePassword")
+    const passwordInput = document.getElementById("password")
+
+    if (togglePassword && passwordInput) {
+      togglePassword.addEventListener("click", () => {
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
+        passwordInput.setAttribute("type", type)
+        togglePassword.querySelector("i").className = type === "password" ? "fas fa-eye" : "fas fa-eye-slash"
+      })
+    }
+
     registerForm.addEventListener("submit", (e) => {
       e.preventDefault()
       const name = document.getElementById("name").value
       const email = document.getElementById("email").value
       const password = document.getElementById("password").value
-      const confirmPassword = document.getElementById("confirmPassword").value
+      const termsCheckbox = document.getElementById("termsCheckbox")
       const errorElement = document.getElementById("registerError")
 
       // Clear previous errors
       errorElement.textContent = ""
 
-      // Validate passwords match
-      if (password !== confirmPassword) {
-        errorElement.textContent = "Passwords do not match"
+      if (!termsCheckbox.checked) {
+        errorElement.textContent = "You must agree to the Terms of Service and Privacy Notice"
+        return
+      }
+
+      if (password.length < 6) {
+        errorElement.textContent = "Password must be at least 6 characters long"
         return
       }
 
@@ -128,4 +146,3 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 })
-
