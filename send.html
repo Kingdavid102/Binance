@@ -88,6 +88,26 @@
     .send-form.active {
       display: block;
     }
+    
+    .binance-logo {
+      width: 120px;
+      margin: 24px auto;
+      display: block;
+    }
+    
+    .page-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-color);
+    }
+    
+    .page-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
   </style>
 </head>
 <body>
@@ -102,6 +122,11 @@
     </header>
 
     <div class="form-container">
+      <img src="https://public.bnbstatic.com/static/images/common/logo.png" alt="Binance" class="binance-logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\' viewBox=\'0 0 120 40\'><rect fill=\'%23F0B90B\' width=\'120\' height=\'40\' rx=\'4\'/><text x=\'60\' y=\'25\' font-family=\'Arial\' font-size=\'18\' font-weight=\'bold\' fill=\'%23000\' text-anchor=\'middle\'>Binance</text></svg>'">
+      
+      <h1 class="page-title">Transfer Funds</h1>
+      <p class="page-subtitle">Send crypto securely to any wallet</p>
+
       <!-- Send Tabs -->
       <div class="send-tabs">
         <button class="send-tab active" data-form="tokenForm">Token</button>
@@ -227,4 +252,3 @@
   <script src="js/send.js"></script>
 </body>
 </html>
-

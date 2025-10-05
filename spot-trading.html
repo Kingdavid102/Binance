@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spot Trading - Binance</title>
+  <link rel="stylesheet" href="css/binance-premium.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <button class="btn-icon btn-ghost" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="header-title">
+        <div id="tradingPair" style="font-size: 1rem; font-weight: 600;">BTC/USDT</div>
+        <div id="pairPrice" style="font-size: 0.75rem; color: var(--text-secondary);">$85,143.49</div>
+      </div>
+      <div class="header-right">
+        <button class="btn-icon btn-ghost" id="chartTypeBtn">
+          <i class="fas fa-chart-line"></i>
+        </button>
+        <button class="btn-icon btn-ghost" id="infoBtn">
+          <i class="fas fa-info-circle"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Price Stats -->
+    <div style="padding: var(--spacing-md); background: var(--bg-secondary); border-bottom: 1px solid var(--border-primary);">
+      <div class="flex justify-between items-center mb-3">
+        <div>
+          <div id="currentPrice" style="font-size: 1.5rem; font-weight: 700; color: var(--success);">$85,143.49</div>
+          <div id="priceChange" class="text-sm" style="color: var(--success);">+$2,641.23 (+3.20%)</div>
+        </div>
+        <button class="btn-icon btn-ghost" id="favoriteBtn">
+          <i class="far fa-star"></i>
+        </button>
+      </div>
+      
+      <div class="flex justify-between text-xs">
+        <div>
+          <div class="text-secondary mb-1">24h High</div>
+          <div id="high24h" class="font-semibold">$86,250.00</div>
+        </div>
+        <div>
+          <div class="text-secondary mb-1">24h Low</div>
+          <div id="low24h" class="font-semibold">$82,100.00</div>
+        </div>
+        <div>
+          <div class="text-secondary mb-1">24h Volume</div>
+          <div id="volume24h" class="font-semibold">2.5B</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart Placeholder -->
+    <div style="padding: var(--spacing-md); background: var(--bg-secondary); border-bottom: 1px solid var(--border-primary);">
+      <div style="height: 250px; background: var(--bg-tertiary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+        <canvas id="priceChart" style="width: 100%; height: 100%;"></canvas>
+        <div id="chartPlaceholder" style="position: absolute; text-align: center;">
+          <i class="fas fa-chart-area" style="font-size: 3rem; color: var(--text-tertiary); margin-bottom: var(--spacing-sm);"></i>
+          <div class="text-secondary">Price Chart</div>
+        </div>
+      </div>
+      
+      <!-- Timeframe Selector -->
+      <div class="flex gap-2 mt-3" style="overflow-x: auto;">
+        <button class="btn btn-xs btn-ghost" data-timeframe="1m">1m</button>
+        <button class="btn btn-xs btn-ghost" data-timeframe="5m">5m</button>
+        <button class="btn btn-xs btn-ghost active" data-timeframe="15m">15m</button>
+        <button class="btn btn-xs btn-ghost" data-timeframe="1h">1H</button>
+        <button class="btn btn-xs btn-ghost" data-timeframe="4h">4H</button>
+        <button class="btn btn-xs btn-ghost" data-timeframe="1d">1D</button>
+        <button class="btn btn-xs btn-ghost" data-timeframe="1w">1W</button>
+      </div>
+    </div>
+
+    <!-- Trading Interface -->
+    <div style="padding: var(--spacing-md);">
+      <!-- Buy/Sell Tabs -->
+      <div class="flex gap-2 mb-4">
+        <button class="btn btn-success flex-1 active" id="buyTab">Buy</button>
+        <button class="btn btn-ghost flex-1" id="sellTab">Sell</button>
+      </div>
+
+      <!-- Order Type -->
+      <div class="flex gap-2 mb-4">
+        <button class="btn btn-sm btn-ghost active" data-order-type="limit">Limit</button>
+        <button class="btn btn-sm btn-ghost" data-order-type="market">Market</button>
+        <button class="btn btn-sm btn-ghost" data-order-type="stop-limit">Stop-Limit</button>
+      </div>
+
+      <!-- Available Balance -->
+      <div class="flex justify-between items-center mb-4 p-3" style="background: var(--bg-tertiary); border-radius: var(--radius-md);">
+        <span class="text-sm text-secondary">Available</span>
+        <span class="text-sm font-semibold" id="availableBalance">0.00 USDT</span>
+      </div>
+
+      <!-- Trading Form -->
+      <div id="tradingForm">
+        <!-- Price Input -->
+        <div class="mb-4">
+          <label class="text-sm text-secondary mb-2 block">Price</label>
+          <div class="input-group">
+            <input type="number" class="input" id="priceInput" placeholder="0.00" value="85143.49">
+            <span class="input-addon">USDT</span>
+          </div>
+        </div>
+
+        <!-- Amount Input -->
+        <div class="mb-4">
+          <label class="text-sm text-secondary mb-2 block">Amount</label>
+          <div class="input-group">
+            <input type="number" class="input" id="amountInput" placeholder="0.00">
+            <span class="input-addon">BTC</span>
+          </div>
+          
+          <!-- Percentage Buttons -->
+          <div class="flex gap-2 mt-2">
+            <button class="btn btn-xs btn-ghost flex-1" data-percent="25">25%</button>
+            <button class="btn btn-xs btn-ghost flex-1" data-percent="50">50%</button>
+            <button class="btn btn-xs btn-ghost flex-1" data-percent="75">75%</button>
+            <button class="btn btn-xs btn-ghost flex-1" data-percent="100">100%</button>
+          </div>
+        </div>
+
+        <!-- Total -->
+        <div class="mb-4">
+          <label class="text-sm text-secondary mb-2 block">Total</label>
+          <div class="input-group">
+            <input type="number" class="input" id="totalInput" placeholder="0.00" readonly>
+            <span class="input-addon">USDT</span>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="btn btn-success w-full" id="submitOrderBtn">
+          <i class="fas fa-check-circle"></i> Buy BTC
+        </button>
+      </div>
+    </div>
+
+    <!-- Open Orders -->
+    <div style="padding: 0 var(--spacing-md) 100px;">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Open Orders</h3>
+          <button class="btn btn-xs btn-ghost" id="viewAllOrdersBtn">View All</button>
+        </div>
+        <div class="card-body">
+          <div id="openOrdersList">
+            <div class="empty-state">
+              <div class="empty-icon"><i class="fas fa-clipboard-list"></i></div>
+              <div class="empty-description">No open orders</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="markets.html" class="nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Markets</span>
+      </a>
+      <a href="spot-trading.html" class="nav-item active">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Trade</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="js/spot-trading.js"></script>
+</body>
+</html>

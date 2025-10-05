@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markets - Binance</title>
+  <link rel="stylesheet" href="css/binance-premium.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <button class="btn-icon btn-ghost" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="header-title">Markets</div>
+      <div class="header-right">
+        <button class="btn-icon btn-ghost" id="searchBtn">
+          <i class="fas fa-search"></i>
+        </button>
+        <button class="btn-icon btn-ghost" id="starBtn">
+          <i class="far fa-star"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Search Bar (Hidden by default) -->
+    <div id="searchBar" class="hidden" style="padding: var(--spacing-md); background: var(--bg-secondary); border-bottom: 1px solid var(--border-primary);">
+      <div class="input-icon">
+        <i class="fas fa-search"></i>
+        <input type="text" class="input" placeholder="Search coin pairs..." id="searchInput">
+      </div>
+    </div>
+
+    <!-- Market Tabs -->
+    <div style="padding: var(--spacing-md); background: var(--bg-secondary); border-bottom: 1px solid var(--border-primary); overflow-x: auto;">
+      <div class="flex gap-4" style="min-width: max-content;">
+        <button class="btn btn-sm btn-ghost active" data-filter="favorites">
+          <i class="fas fa-star"></i> Favorites
+        </button>
+        <button class="btn btn-sm btn-ghost" data-filter="hot">Hot</button>
+        <button class="btn btn-sm btn-ghost" data-filter="gainers">Gainers</button>
+        <button class="btn btn-sm btn-ghost" data-filter="losers">Losers</button>
+        <button class="btn btn-sm btn-ghost" data-filter="new">New Listings</button>
+      </div>
+    </div>
+
+    <!-- Market List Header -->
+    <div style="padding: var(--spacing-md); background: var(--bg-secondary); border-bottom: 1px solid var(--border-primary);">
+      <div class="flex justify-between text-xs text-secondary">
+        <span>Name</span>
+        <span>Last Price</span>
+        <span>24h Change</span>
+      </div>
+    </div>
+
+    <!-- Market List -->
+    <div id="marketList" style="padding: var(--spacing-md) 0 100px;">
+      <!-- Markets will be loaded here -->
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="markets.html" class="nav-item active">
+        <i class="fas fa-chart-line"></i>
+        <span>Markets</span>
+      </a>
+      <a href="spot-trading.html" class="nav-item">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Trade</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <script src="js/markets.js"></script>
+</body>
+</html>

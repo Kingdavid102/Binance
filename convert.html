@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convert - Binance</title>
+  <link rel="stylesheet" href="css/binance-premium.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <button class="btn-icon btn-ghost" onclick="window.location.href='dashboard.html'">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="header-title">Convert</div>
+      <div class="header-right">
+        <button class="btn-icon btn-ghost" onclick="window.location.href='transactions.html'">
+          <i class="fas fa-history"></i>
+        </button>
+      </div>
+    </header>
+
+    <div style="padding: var(--spacing-md);">
+      <!-- Info Banner -->
+      <div class="card mb-4" style="background: var(--info-bg); border: 1px solid var(--info);">
+        <div class="card-body">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-info-circle" style="color: var(--info); font-size: 24px;"></i>
+            <div>
+              <div class="font-semibold mb-1" style="color: var(--info);">Zero Fees</div>
+              <div class="text-xs text-secondary">Convert crypto instantly with no trading fees</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Convert Form -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <!-- From -->
+          <div class="mb-4">
+            <label class="text-xs text-secondary mb-2 block">From</label>
+            <div class="flex gap-2">
+              <select class="input flex-1">
+                <option>BTC</option>
+                <option>ETH</option>
+                <option>BNB</option>
+                <option>USDT</option>
+                <option>SOL</option>
+              </select>
+              <input type="number" class="input flex-1" placeholder="0.00" value="1.0">
+            </div>
+            <div class="text-xs text-secondary mt-2">Available: 1.5 BTC</div>
+          </div>
+
+          <!-- Swap Button -->
+          <div class="flex justify-center mb-4">
+            <button class="btn-icon btn-ghost">
+              <i class="fas fa-exchange-alt"></i>
+            </button>
+          </div>
+
+          <!-- To -->
+          <div class="mb-4">
+            <label class="text-xs text-secondary mb-2 block">To</label>
+            <div class="flex gap-2">
+              <select class="input flex-1">
+                <option>USDT</option>
+                <option>BTC</option>
+                <option>ETH</option>
+                <option>BNB</option>
+                <option>SOL</option>
+              </select>
+              <input type="number" class="input flex-1" placeholder="0.00" value="85143.49" readonly>
+            </div>
+            <div class="text-xs text-secondary mt-2">≈ $85,143.49</div>
+          </div>
+
+          <!-- Exchange Rate -->
+          <div class="card mb-4" style="background: var(--bg-tertiary);">
+            <div class="card-body">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-secondary">Exchange Rate</span>
+                <span class="text-sm font-semibold">1 BTC = 85,143.49 USDT</span>
+              </div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs text-secondary">Fee</span>
+                <span class="text-sm font-semibold" style="color: var(--success);">$0.00</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-secondary">You'll Receive</span>
+                <span class="text-sm font-semibold">85,143.49 USDT</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary w-full">
+            <i class="fas fa-exchange-alt"></i> Convert Now
+          </button>
+        </div>
+      </div>
+
+      <!-- Recent Conversions -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Recent Conversions</h3>
+          <a href="transactions.html" class="text-xs text-warning">View All</a>
+        </div>
+        <div class="card-body">
+          <div class="flex flex-col gap-3">
+            <!-- Conversion 1 -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--success-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-exchange-alt" style="color: var(--success);"></i>
+                </div>
+                <div>
+                  <div class="font-semibold">BTC → USDT</div>
+                  <div class="text-xs text-secondary">2 hours ago</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-semibold">0.5 BTC</div>
+                <div class="text-xs text-secondary">≈ $42,571.75</div>
+              </div>
+            </div>
+
+            <!-- Conversion 2 -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--info-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-exchange-alt" style="color: var(--info);"></i>
+                </div>
+                <div>
+                  <div class="font-semibold">ETH → BNB</div>
+                  <div class="text-xs text-secondary">1 day ago</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-semibold">2.0 ETH</div>
+                <div class="text-xs text-secondary">≈ 6.23 BNB</div>
+              </div>
+            </div>
+
+            <!-- Conversion 3 -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--warning-bg); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-exchange-alt" style="color: var(--warning);"></i>
+                </div>
+                <div>
+                  <div class="font-semibold">USDT → SOL</div>
+                  <div class="text-xs text-secondary">3 days ago</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-semibold">1,000 USDT</div>
+                <div class="text-xs text-secondary">≈ 7.90 SOL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="markets.html" class="nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Markets</span>
+      </a>
+      <a href="spot-trading.html" class="nav-item">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Trade</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+</body>
+</html>

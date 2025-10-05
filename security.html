@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security - Binance</title>
+  <link rel="stylesheet" href="css/binance-premium.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <button class="btn-icon btn-ghost" onclick="window.history.back()">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="header-title">Security</div>
+      <div class="header-right"></div>
+    </header>
+
+    <!-- Security Score -->
+    <div style="padding: var(--spacing-lg); background: var(--bg-secondary); border-bottom: 1px solid var(--border-primary);">
+      <div class="text-center mb-4">
+        <div style="width: 120px; height: 120px; margin: 0 auto; position: relative;">
+          <svg width="120" height="120" style="transform: rotate(-90deg);">
+            <circle cx="60" cy="60" r="50" fill="none" stroke="var(--bg-tertiary)" stroke-width="10"/>
+            <circle id="securityCircle" cx="60" cy="60" r="50" fill="none" stroke="var(--warning)" stroke-width="10" 
+                    stroke-dasharray="314" stroke-dashoffset="157" stroke-linecap="round"/>
+          </svg>
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+            <div id="securityScore" style="font-size: 2rem; font-weight: 700; color: var(--warning);">50</div>
+            <div class="text-xs text-secondary">Security Score</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <h3 class="text-lg font-semibold mb-2">Medium Security</h3>
+        <p class="text-sm text-secondary">Complete more security settings to protect your account</p>
+      </div>
+    </div>
+
+    <!-- Security Settings -->
+    <div style="padding: var(--spacing-md) 0 100px;">
+      <!-- Authentication -->
+      <div style="padding: 0 var(--spacing-md) var(--spacing-md);">
+        <h3 class="text-sm font-semibold text-secondary mb-3">AUTHENTICATION</h3>
+        
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--success-bg); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-envelope" style="color: var(--success); font-size: 1.25rem;"></i>
+                </div>
+                <div>
+                  <div class="font-semibold mb-1">Email Verification</div>
+                  <div class="text-xs text-secondary">user@example.com</div>
+                </div>
+              </div>
+              <div class="badge badge-success">Enabled</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--bg-tertiary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-mobile-alt" style="color: var(--text-secondary); font-size: 1.25rem;"></i>
+                </div>
+                <div>
+                  <div class="font-semibold mb-1">Phone Verification</div>
+                  <div class="text-xs text-secondary">Not set up</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-ghost" onclick="showToast('Phone verification coming soon', 'info')">
+                Enable
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--bg-tertiary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-shield-alt" style="color: var(--text-secondary); font-size: 1.25rem;"></i>
+                </div>
+                <div>
+                  <div class="font-semibold mb-1">2FA Authentication</div>
+                  <div class="text-xs text-secondary">Google Authenticator</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-ghost" id="enable2FABtn">
+                Enable
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Account Security -->
+      <div style="padding: 0 var(--spacing-md) var(--spacing-md);">
+        <h3 class="text-sm font-semibold text-secondary mb-3">ACCOUNT SECURITY</h3>
+        
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--bg-tertiary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-key" style="color: var(--text-secondary); font-size: 1.25rem;"></i>
+                </div>
+                <div>
+                  <div class="font-semibold mb-1">Change Password</div>
+                  <div class="text-xs text-secondary">Last changed 30 days ago</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-ghost" id="changePasswordBtn">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--bg-tertiary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-lock" style="color: var(--text-secondary); font-size: 1.25rem;"></i>
+                </div>
+                <div>
+                  <div class="font-semibold mb-1">Withdrawal Whitelist</div>
+                  <div class="text-xs text-secondary">Restrict withdrawals to trusted addresses</div>
+                </div>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="whitelistToggle">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--bg-tertiary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-ban" style="color: var(--text-secondary); font-size: 1.25rem;"></i>
+                </div>
+                <div>
+                  <div class="font-semibold mb-1">Anti-Phishing Code</div>
+                  <div class="text-xs text-secondary">Protect against phishing emails</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-ghost" id="antiPhishingBtn">
+                Set Up
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity -->
+      <div style="padding: 0 var(--spacing-md);">
+        <h3 class="text-sm font-semibold text-secondary mb-3">ACTIVITY</h3>
+        
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--bg-tertiary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-history" style="color: var(--text-secondary); font-size: 1.25rem;"></i>
+                </div>
+                <div>
+                  <div class="font-semibold mb-1">Login Activity</div>
+                  <div class="text-xs text-secondary">View recent login history</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-ghost" onclick="window.location.href='transactions.html'">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div style="width: 40px; height: 40px; background: var(--bg-tertiary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-laptop" style="color: var(--text-secondary); font-size: 1.25rem;"></i>
+                </div>
+                <div>
+                  <div class="font-semibold mb-1">Device Management</div>
+                  <div class="text-xs text-secondary">Manage trusted devices</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-ghost" onclick="showToast('Device management coming soon', 'info')">
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="markets.html" class="nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Markets</span>
+      </a>
+      <a href="spot-trading.html" class="nav-item">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Trade</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- 2FA Modal -->
+  <div class="modal" id="twoFAModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Enable 2FA</h3>
+        <button class="btn-icon btn-ghost" id="close2FAModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center mb-4">
+          <div style="width: 200px; height: 200px; margin: 0 auto; background: white; padding: var(--spacing-md); border-radius: var(--radius-md);">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=otpauth://totp/Binance:user@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Binance" alt="QR Code" style="width: 100%; height: 100%;">
+          </div>
+        </div>
+        
+        <div class="alert alert-info mb-4">
+          <i class="fas fa-info-circle"></i>
+          <span>Scan this QR code with Google Authenticator or Authy</span>
+        </div>
+        
+        <div class="mb-4">
+          <label class="text-sm text-secondary mb-2 block">Backup Key</label>
+          <div class="input-group">
+            <input type="text" class="input" value="JBSWY3DPEHPK3PXP" readonly>
+            <button class="btn btn-ghost btn-sm" onclick="showToast('Copied to clipboard', 'success')">
+              <i class="fas fa-copy"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="mb-4">
+          <label class="text-sm text-secondary mb-2 block">Enter 6-digit code</label>
+          <input type="text" class="input" placeholder="000000" maxlength="6" id="twoFACode">
+        </div>
+        
+        <button class="btn btn-primary w-full" id="confirm2FABtn">Enable 2FA</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Change Password Modal -->
+  <div class="modal" id="changePasswordModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Change Password</h3>
+        <button class="btn-icon btn-ghost" id="closePasswordModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-4">
+          <label class="text-sm text-secondary mb-2 block">Current Password</label>
+          <input type="password" class="input" placeholder="Enter current password" id="currentPassword">
+        </div>
+        
+        <div class="mb-4">
+          <label class="text-sm text-secondary mb-2 block">New Password</label>
+          <input type="password" class="input" placeholder="Enter new password" id="newPassword">
+        </div>
+        
+        <div class="mb-4">
+          <label class="text-sm text-secondary mb-2 block">Confirm New Password</label>
+          <input type="password" class="input" placeholder="Confirm new password" id="confirmPassword">
+        </div>
+        
+        <button class="btn btn-primary w-full" id="confirmPasswordBtn">Change Password</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <script src="js/security.js"></script>
+</body>
+</html>

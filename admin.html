@@ -1,335 +1,460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Wallet - Admin Dashboard</title>
-<link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/admin.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Binance</title>
+  <!-- Updated to use new premium styles -->
+  <link rel="stylesheet" href="css/binance-premium.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-<div class="app-container">
- <div class="admin-header">
-   <div class="admin-title">
-     <i class="fas fa-shield-alt"></i>
-     <h1>Admin Dashboard</h1>
-   </div>
-   <div class="admin-actions">
-     <button id="darkModeToggleAdmin" class="theme-btn">
-       <i class="fas fa-moon"></i>
-     </button>
-     <button id="logoutBtnAdmin" class="logout-btn">
-       <i class="fas fa-sign-out-alt"></i>
-     </button>
-   </div>
- </div>
+  <div class="app-container">
+    <!-- Updated header with new design -->
+    <header class="app-header">
+      <button class="btn-icon btn-ghost" id="menuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="header-title">
+        <i class="fas fa-user-shield"></i> Admin Panel
+      </div>
+      <div class="header-right">
+        <button class="btn-icon btn-ghost" id="themeToggleBtn">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </header>
 
- <div class="admin-balance-card">
-   <div class="admin-balance-header">
-     <h3>Admin Balance</h3>
-     <div class="admin-balance-actions">
-       <button id="refreshBalanceBtn" class="refresh-btn">
-         <i class="fas fa-sync-alt"></i>
-       </button>
-       <button id="hideBalanceBtn" class="visibility-btn">
-         <i class="fas fa-eye"></i>
-       </button>
-     </div>
-   </div>
-   <div class="admin-balance-amount" id="adminBalanceAmount">$500,000,000.00</div>
-   <div class="admin-token-balances">
-     <div class="token-balance">
-       <span class="token-name">TRX:</span>
-       <span class="token-value" id="adminTrxBalance">500,000,000.00</span>
-     </div>
-     <div class="token-balance">
-       <span class="token-name">USDT:</span>
-       <span class="token-value" id="adminUsdtBalance">500,000,000.00</span>
-     </div>
-     <div class="token-balance">
-       <span class="token-name">USDC:</span>
-       <span class="token-value" id="adminUsdcBalance">500,000,000.00</span>
-     </div>
-     <div class="token-balance">
-       <span class="token-name">BNB:</span>
-       <span class="token-value" id="adminBnbBalance">500,000,000.00</span>
-     </div>
-     <div class="token-balance">
-       <span class="token-name">SOL:</span>
-       <span class="token-value" id="adminSolBalance">500,000,000.00</span>
-     </div>
-     <div class="token-balance">
-       <span class="token-name">ETH:</span>
-       <span class="token-value" id="adminEthBalance">500,000,000.00</span>
-     </div>
-     <div class="token-balance">
-       <span class="token-name">BTC:</span>
-       <span class="token-value" id="adminBtcBalance">500,000,000.00</span>
-     </div>
-     <div class="token-balance">
-       <span class="token-name">POL:</span>
-       <span class="token-value" id="adminPolBalance">500,000,000.00</span>
-     </div>
-   </div>
- </div>
+    <!-- New admin stats cards -->
+    <div style="padding: var(--spacing-md);">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-md); margin-bottom: var(--spacing-md);">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-xs text-secondary mb-2">Total Users</div>
+            <div class="text-2xl font-bold" id="totalUsers">0</div>
+            <div class="text-xs" style="color: var(--success); margin-top: var(--spacing-xs);">
+              <i class="fas fa-arrow-up"></i> +12 this week
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-body">
+            <div class="text-xs text-secondary mb-2">Active Users</div>
+            <div class="text-2xl font-bold" id="activeUsers">0</div>
+            <div class="text-xs" style="color: var(--success); margin-top: var(--spacing-xs);">
+              <i class="fas fa-check-circle"></i> Online now
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-body">
+            <div class="text-xs text-secondary mb-2">Total Volume</div>
+            <div class="text-2xl font-bold" id="totalVolume">$0</div>
+            <div class="text-xs" style="color: var(--info); margin-top: var(--spacing-xs);">
+              <i class="fas fa-chart-line"></i> 24h volume
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-body">
+            <div class="text-xs text-secondary mb-2">Transactions</div>
+            <div class="text-2xl font-bold" id="totalTransactions">0</div>
+            <div class="text-xs" style="color: var(--warning); margin-top: var(--spacing-xs);">
+              <i class="fas fa-exchange-alt"></i> All time
+            </div>
+          </div>
+        </div>
+      </div>
 
- <div class="admin-actions-container">
-   <button id="fundUserBtn" class="admin-action-btn">
-     <i class="fas fa-paper-plane"></i>
-     <span>Fund User</span>
-   </button>
-   <button id="fundMainAccountBtn" class="admin-action-btn">
-     <i class="fas fa-wallet"></i>
-     <span>Fund Main Account</span>
-   </button>
-   <button id="viewUsersBtn" class="admin-action-btn">
-     <i class="fas fa-users"></i>
-     <span>View Users</span>
-   </button>
-   <button id="viewTransactionsBtn" class="admin-action-btn">
-     <i class="fas fa-exchange-alt"></i>
-     <span>Transactions</span>
-   </button>
- </div>
+      <!-- New admin balance card with modern design -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h3 class="card-title">Admin Balance</h3>
+          <button class="btn-icon btn-ghost btn-sm" id="hideBalanceBtn">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="text-3xl font-bold mb-4" id="adminBalanceAmount">$500,000,000.00</div>
+          
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-sm);">
+            <div style="padding: var(--spacing-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+              <div class="text-xs text-secondary">BTC</div>
+              <div class="text-sm font-semibold" id="adminBtcBalance">500M</div>
+            </div>
+            <div style="padding: var(--spacing-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+              <div class="text-xs text-secondary">ETH</div>
+              <div class="text-sm font-semibold" id="adminEthBalance">500M</div>
+            </div>
+            <div style="padding: var(--spacing-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+              <div class="text-xs text-secondary">USDT</div>
+              <div class="text-sm font-semibold" id="adminUsdtBalance">500M</div>
+            </div>
+            <div style="padding: var(--spacing-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+              <div class="text-xs text-secondary">BNB</div>
+              <div class="text-sm font-semibold" id="adminBnbBalance">500M</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
- <div class="admin-tabs">
-   <div class="tabs">
-     <button class="tab-btn active" data-tab="users">Users</button>
-     <button class="tab-btn" data-tab="transactions">Transactions</button>
-     <button class="tab-btn" data-tab="wallets">Wallets</button>
-   </div>
- </div>
+      <!-- New quick actions grid -->
+      <div class="action-grid mb-4">
+        <div class="action-item" id="fundUserBtn">
+          <div class="action-icon" style="background: var(--success-bg);">
+            <i class="fas fa-paper-plane" style="color: var(--success);"></i>
+          </div>
+          <span class="action-label">Fund User</span>
+        </div>
+        <div class="action-item" id="addUserBtn">
+          <div class="action-icon" style="background: var(--info-bg);">
+            <i class="fas fa-user-plus" style="color: var(--info);"></i>
+          </div>
+          <span class="action-label">Add User</span>
+        </div>
+        <div class="action-item" id="viewTransactionsBtn">
+          <div class="action-icon" style="background: var(--warning-bg);">
+            <i class="fas fa-exchange-alt" style="color: var(--warning);"></i>
+          </div>
+          <span class="action-label">Transactions</span>
+        </div>
+        <div class="action-item" id="settingsBtn">
+          <div class="action-icon" style="background: var(--bg-tertiary);">
+            <i class="fas fa-cog"></i>
+          </div>
+          <span class="action-label">Settings</span>
+        </div>
+        <div class="action-item" id="debitUserBtn">
+          <div class="action-icon" style="background: var(--danger-bg);">
+            <i class="fas fa-minus-circle" style="color: var(--danger);"></i>
+          </div>
+          <span class="action-label">Debit User</span>
+        </div>
+      </div>
+    </div>
 
- <div class="tab-content active" id="users-tab">
-   <div class="search-container">
-     <div class="input-with-icon search-input">
-       <i class="fas fa-search"></i>
-       <input type="search" id="userSearch" placeholder="Search users...">
-     </div>
-   </div>
+    <!-- New tabs design -->
+    <div style="padding: 0 var(--spacing-md) var(--spacing-md);">
+      <div class="flex gap-2 mb-4" style="border-bottom: 1px solid var(--border-primary); padding-bottom: var(--spacing-sm);">
+        <button class="btn btn-sm btn-ghost active" data-tab="users">
+          <i class="fas fa-users"></i> Users
+        </button>
+        <button class="btn btn-sm btn-ghost" data-tab="transactions">
+          <i class="fas fa-exchange-alt"></i> Transactions
+        </button>
+        <button class="btn btn-sm btn-ghost" data-tab="wallets">
+          <i class="fas fa-wallet"></i> Wallets
+        </button>
+      </div>
+    </div>
+
+    <!-- Users Tab -->
+    <div class="tab-content active" id="users-tab" style="padding: 0 var(--spacing-md) 100px;">
+      <div class="mb-4">
+        <div class="input-icon">
+          <i class="fas fa-search"></i>
+          <input type="search" class="input" id="userSearch" placeholder="Search users by name or email...">
+        </div>
+      </div>
+      
+      <div id="usersList">
+        <div class="loading-container">
+          <div class="spinner spinner-lg"></div>
+          <div class="loading-text">Loading users...</div>
+        </div>
+      </div>
+    </div>
+
    
-   <div class="users-list" id="usersList">
 
-     <div class="loading-spinner" id="usersLoading">
-       <i class="fas fa-spinner fa-spin"></i>
-     </div>
-   </div>
-   
-   <div id="noUsers" class="no-data hidden">
-     <p>No users found</p>
-   </div>
- </div>
- 
- <div class="tab-content" id="transactions-tab">
-   <div class="search-container">
-     <div class="input-with-icon search-input">
-       <i class="fas fa-search"></i>
-       <input type="search" id="transactionSearch" placeholder="Search transactions...">
-     </div>
-   </div>
-   
-   <div class="transactions-list admin-transactions" id="adminTransactionsList">
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="markets.html" class="nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Markets</span>
+      </a>
+      <a href="admin.html" class="nav-item active">
+        <i class="fas fa-user-shield"></i>
+        <span>Admin</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
 
-     <div class="loading-spinner" id="adminTransactionsLoading">
-       <i class="fas fa-spinner fa-spin"></i>
-     </div>
-   </div>
-   
-   <div id="noAdminTransactions" class="no-data hidden">
-     <p>No transactions found</p>
-   </div>
- </div>
+  <!-- Updated modals with new design -->
+  <!-- Fund User Modal -->
+  <div class="modal" id="fundUserModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Fund User</h3>
+        <button class="btn-icon btn-ghost" id="closeFundUserModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="fundUserForm">
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">User Email</label>
+            <div class="input-icon">
+              <i class="fas fa-user"></i>
+              <input type="email" class="input" id="recipientEmail" placeholder="user@example.com" required>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Fund Type</label>
+            <select class="input" id="fundType" required>
+              <option value="wallet">Token Wallet (BTC, ETH, USDT, etc.)</option>
+              <option value="main">Main Wallet</option>
+            </select>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Token</label>
+            <select class="input" id="tokenType" required>
+              <option value="USDT">USDT</option>
+              <option value="BTC">BTC</option>
+              <option value="ETH">ETH</option>
+              <option value="BNB">BNB</option>
+              <option value="SOL">SOL</option>
+            </select>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Amount</label>
+            <div class="input-icon">
+              <i class="fas fa-dollar-sign"></i>
+              <input type="number" class="input" id="fundAmount" min="0.01" step="0.01" placeholder="0.00" required>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary w-full">
+            <i class="fas fa-paper-plane"></i> Fund User
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 
- <div class="tab-content" id="wallets-tab">
-   <div class="search-container">
-     <div class="input-with-icon search-input">
-       <i class="fas fa-search"></i>
-       <input type="search" id="walletSearch" placeholder="Search wallets...">
-     </div>
-   </div>
-   
-   <div class="wallets-list" id="adminWalletsList">
+  <!-- Add User Modal -->
+  <div class="modal" id="addUserModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Add New User</h3>
+        <button class="btn-icon btn-ghost" id="closeAddUserModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="addUserForm">
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Full Name</label>
+            <div class="input-icon">
+              <i class="fas fa-user"></i>
+              <input type="text" class="input" id="newUserName" placeholder="John Doe" required>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Email</label>
+            <div class="input-icon">
+              <i class="fas fa-envelope"></i>
+              <input type="email" class="input" id="newUserEmail" placeholder="user@example.com" required>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Password</label>
+            <div class="input-icon">
+              <i class="fas fa-lock"></i>
+              <input type="password" class="input" id="newUserPassword" placeholder="••••••••" required>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Initial Balance (USDT)</label>
+            <div class="input-icon">
+              <i class="fas fa-dollar-sign"></i>
+              <input type="number" class="input" id="newUserBalance" min="0" step="0.01" placeholder="0.00" value="0">
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="flex items-center gap-2">
+              <input type="checkbox" id="newUserIsAdmin">
+              <span class="text-sm">Grant admin privileges</span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-primary w-full">
+            <i class="fas fa-user-plus"></i> Create User
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 
-     <div class="loading-spinner" id="walletsLoading">
-       <i class="fas fa-spinner fa-spin"></i>
-     </div>
-   </div>
-   
-   <div id="noWallets" class="no-data hidden">
-     <p>No wallets found</p>
-   </div>
- </div>
+  <!-- Edit User Modal -->
+  <div class="modal" id="editUserModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit User</h3>
+        <button class="btn-icon btn-ghost" id="closeEditUserModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editUserForm">
+          <input type="hidden" id="editUserId">
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Full Name</label>
+            <div class="input-icon">
+              <i class="fas fa-user"></i>
+              <input type="text" class="input" id="editUserName" required>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Email</label>
+            <div class="input-icon">
+              <i class="fas fa-envelope"></i>
+              <input type="email" class="input" id="editUserEmail" required>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Balance (USDT)</label>
+            <div class="input-icon">
+              <i class="fas fa-dollar-sign"></i>
+              <input type="number" class="input" id="editUserBalance" min="0" step="0.01">
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="flex items-center gap-2 mb-2">
+              <input type="checkbox" id="editUserIsAdmin">
+              <span class="text-sm">Admin privileges</span>
+            </label>
+            <label class="flex items-center gap-2 mb-2">
+              <input type="checkbox" id="editUserIsUpgraded">
+              <span class="text-sm">Account Upgraded (Enable Deposits/Withdrawals)</span>
+            </label>
+            <label class="flex items-center gap-2">
+              <input type="checkbox" id="editUserIsBanned">
+              <span class="text-sm text-danger">Ban User</span>
+            </label>
+          </div>
+          
+          <div class="flex gap-2">
+            <button type="submit" class="btn btn-primary flex-1">
+              <i class="fas fa-save"></i> Save
+            </button>
+            <button type="button" class="btn btn-danger flex-1" id="deleteUserBtn">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
- <nav class="bottom-nav">
-   <a href="admin.html" class="nav-item active">
-     <i class="fas fa-home"></i>
-     <span>Home</span>
-   </a>
-   <a href="#" class="nav-item" id="adminFundBtn">
-     <i class="fas fa-paper-plane"></i>
-     <span>Fund</span>
-   </a>
-   <a href="#" class="nav-item" id="adminUsersBtn">
-     <i class="fas fa-users"></i>
-     <span>Users</span>
-   </a>
-   <a href="#" class="nav-item" id="adminSettingsBtn">
-     <i class="fas fa-cog"></i>
-     <span>Settings</span>
-   </a>
- </nav>
-</div>
+  <!-- Debit User Modal -->
+  <div class="modal" id="debitUserModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Debit User</h3>
+        <button class="btn-icon btn-ghost" id="closeDebitUserModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="debitUserForm">
+          <input type="hidden" id="debitUserId">
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">User</label>
+            <div class="text-lg font-semibold" id="debitUserNameDisplay"></div>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Token</label>
+            <select class="input" id="debitTokenType" required>
+              <option value="USDT">USDT</option>
+              <option value="BTC">BTC</option>
+              <option value="ETH">ETH</option>
+              <option value="BNB">BNB</option>
+              <option value="SOL">SOL</option>
+            </select>
+          </div>
+          
+          <div class="mb-4">
+            <label class="text-sm text-secondary mb-2 block">Amount to Debit</label>
+            <div class="input-icon">
+              <i class="fas fa-minus-circle"></i>
+              <input type="number" class="input" id="debitAmount" min="0.01" step="0.01" placeholder="0.00" required>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn btn-danger w-full">
+            <i class="fas fa-minus-circle"></i> Debit User
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 
-&lt;!-- Fund User Modal -->
-<div class="modal" id="fundUserModal">
- <div class="modal-content">
-   <div class="modal-header">
-     <h3>Fund User</h3>
-     <button class="close-modal">&times;</button>
-   </div>
-   <div class="modal-body">
-     <form id="fundUserForm">
-       <div class="form-group">
-         <label for="recipientAddress">Recipient Wallet Address</label>
-         <div class="input-with-icon">
-           <i class="fas fa-wallet"></i>
-           <input type="text" id="recipientAddress" placeholder="Enter wallet address" required>
-         </div>
-       </div>
-       
-       <div class="form-group">
-         <label for="fundAmount">Amount</label>
-         <div class="input-with-icon">
-           <i class="fas fa-dollar-sign"></i>
-           <input type="number" id="fundAmount" min="0.01" step="0.01" placeholder="0.00" required>
-         </div>
-       </div>
-       
-       <div class="form-group">
-         <label for="tokenType">Token</label>
-         <div class="select-wrapper">
-           <select id="tokenType" required>
-             <option value="TRX">TRX</option>
-             <option value="USDT">USDT</option>
-             <option value="USDC">USDC</option>
-             <option value="BNB">BNB</option>
-             <option value="SOL">SOL</option>
-             <option value="ETH">ETH</option>
-             <option value="BTC">BTC</option>
-             <option value="POL">POL</option>
-           </select>
-           <i class="fas fa-chevron-down"></i>
-         </div>
-       </div>
-       
-       <div class="form-error" id="fundError"></div>
-       
-       <button type="submit" class="btn btn-primary btn-block">
-         <i class="fas fa-paper-plane"></i> Fund User
-       </button>
-     </form>
-   </div>
- </div>
-</div>
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="menu-header">
+      <div class="menu-user">
+        <div class="menu-avatar" style="background: var(--danger);">A</div>
+        <div class="menu-user-info">
+          <div class="menu-user-name">Admin</div>
+          <div class="menu-user-email" id="adminEmail">admin@binance.com</div>
+        </div>
+      </div>
+      <button class="btn-icon btn-ghost" id="closeMenuBtn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <div class="menu-items">
+      <div class="menu-item" onclick="window.location.href='dashboard.html'">
+        <i class="fas fa-home"></i>
+        <span>Dashboard</span>
+      </div>
+      <div class="menu-item" onclick="window.location.href='admin.html'">
+        <i class="fas fa-user-shield"></i>
+        <span>Admin Panel</span>
+      </div>
+      
+      <div class="menu-divider"></div>
+      
+      <div class="menu-item" onclick="window.location.href='profile.html'">
+        <i class="fas fa-user-cog"></i>
+        <span>Settings</span>
+      </div>
+      <div class="menu-item" id="logoutMenuItem">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </div>
+    </div>
+  </div>
 
+  <div class="overlay" id="overlay"></div>
 
-<div class="modal" id="fundMainAccountModal">
- <div class="modal-content">
-   <div class="modal-header">
-     <h3>Fund Main Account</h3>
-     <button class="close-modal">&times;</button>
-   </div>
-   <div class="modal-body">
-     <form id="fundMainAccountForm">
-       <div class="form-group">
-         <label for="mainAccountAddress">Main Wallet Address</label>
-         <div class="input-with-icon">
-           <i class="fas fa-wallet"></i>
-           <input type="text" id="mainAccountAddress" placeholder="Enter main wallet address" required>
-         </div>
-       </div>
-       
-       <div class="form-group">
-         <label for="mainAmount">Amount</label>
-         <div class="input-with-icon">
-           <i class="fas fa-dollar-sign"></i>
-           <input type="number" id="mainAmount" min="0.01" step="0.01" placeholder="0.00" required>
-         </div>
-       </div>
-       
-       <div class="form-error" id="mainFundError"></div>
-       
-       <button type="submit" class="btn btn-primary btn-block">
-         <i class="fas fa-paper-plane"></i> Fund Main Account
-       </button>
-     </form>
-   </div>
- </div>
-</div>
-
-
-<div class="modal" id="userEditModal">
- <div class="modal-content">
-   <div class="modal-header">
-     <h3>Edit User</h3>
-     <button class="close-modal">&times;</button>
-   </div>
-   <div class="modal-body">
-     <form id="editUserForm">
-       <input type="hidden" id="editUserId">
-       <div class="form-group">
-         <label for="editUserName">Name</label>
-         <div class="input-with-icon">
-           <i class="fas fa-user"></i>
-           <input type="text" id="editUserName" required>
-         </div>
-       </div>
-       <div class="form-group">
-         <label for="editUserEmail">Email</label>
-         <div class="input-with-icon">
-           <i class="fas fa-envelope"></i>
-           <input type="email" id="editUserEmail" required>
-         </div>
-       </div>
-       <div class="form-group">
-         <label for="editUserStatus">Status</label>
-         <div class="select-wrapper">
-           <select id="editUserStatus" required>
-             <option value="active">Active</option>
-             <option value="inactive">Inactive</option>
-           </select>
-           <i class="fas fa-chevron-down"></i>
-         </div>
-       </div>
-       <div class="form-error" id="editUserError"></div>
-       <button type="submit" class="btn btn-primary btn-block">
-         <i class="fas fa-save"></i> Save Changes
-       </button>
-     </form>
-   </div>
- </div>
-</div>
-
-
-<div class="modal" id="receiptModal">
- <div class="modal-content">
-   <div class="modal-header">
-     <h3>Transaction Receipt</h3>
-     <button class="close-modal">&times;</button>
-   </div>
-   <div class="modal-body">
-     <div class="receipt" id="receiptContent">
-       &lt;!-- Receipt content will be loaded here -->
-     </div>
-     <button id="printReceiptBtn" class="btn btn-outline btn-block">
-       <i class="fas fa-print"></i> Print Receipt
-     </button>
-   </div>
- </div>
-</div>
-
-<script src="js/admin.js"></script>
+  <script src="js/admin-enhanced.js"></script>
 </body>
 </html>
-

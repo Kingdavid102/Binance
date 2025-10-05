@@ -15,13 +15,19 @@
         <i class="fas fa-bars"></i>
       </button>
       <div class="tab-selector">
-        <button class="tab-btn">Exchange</button>
-        <button class="tab-btn active">Wallet</button>
+        <button class="tab-btn" onclick="window.location.href='dashboard.html'">Exchange</button>
+        <button class="tab-btn" onclick="window.location.href='dashboard.html'">Wallet</button>
+        <button class="tab-btn active">Web3</button>
       </div>
       <button class="search-btn">
         <i class="fas fa-search"></i>
       </button>
     </header>
+
+    <!-- Binance Logo -->
+    <div style="text-align: center; padding: 16px;">
+      <img src="https://public.bnbstatic.com/static/images/common/logo.png" alt="Binance" style="height: 32px;" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'32\' viewBox=\'0 0 120 32\'><rect fill=\'%23F0B90B\' width=\'120\' height=\'32\' rx=\'4\'/><text x=\'60\' y=\'20\' font-family=\'Arial\' font-size=\'14\' font-weight=\'bold\' fill=\'%23000\' text-anchor=\'middle\'>Binance</text></svg>'">
+    </div>
 
     <!-- Earn Section -->
     <div class="earn-section">
@@ -176,7 +182,29 @@
     </nav>
   </div>
 
+  <!-- Added tab selector styling -->
+  <style>
+    .tab-selector {
+      display: flex;
+      gap: 8px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 8px 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+    }
+    .tab-btn.active {
+      color: var(--text-color);
+      border-bottom-color: var(--primary-color);
+    }
+  </style>
+
   <script src="js/dashboard.js"></script>
 </body>
 </html>
-

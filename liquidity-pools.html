@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liquidity Pools - Binance</title>
+  <link rel="stylesheet" href="css/binance-premium.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <button class="btn-icon btn-ghost" onclick="window.location.href='earn.html'">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="header-title">Liquidity Pools</div>
+      <div class="header-right">
+        <button class="btn-icon btn-ghost">
+          <i class="fas fa-question-circle"></i>
+        </button>
+      </div>
+    </header>
+
+    <div style="padding: var(--spacing-md);">
+      <!-- Portfolio Overview -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="text-xs text-secondary mb-2">Total Liquidity Provided</div>
+          <div class="text-3xl font-bold mb-4">$8,750.00</div>
+          <div class="grid grid-cols-3 gap-3">
+            <div>
+              <div class="text-xs text-secondary mb-1">Active Pools</div>
+              <div class="font-bold text-lg">3</div>
+            </div>
+            <div>
+              <div class="text-xs text-secondary mb-1">Total Earned</div>
+              <div class="font-bold text-lg" style="color: var(--success);">$245.50</div>
+            </div>
+            <div>
+              <div class="text-xs text-secondary mb-1">Avg. APY</div>
+              <div class="font-bold text-lg" style="color: var(--success);">18.5%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex gap-2 mb-4" style="border-bottom: 1px solid var(--border-primary); padding-bottom: var(--spacing-sm);">
+        <button class="btn btn-sm btn-primary">All Pools</button>
+        <button class="btn btn-sm btn-ghost">My Pools</button>
+        <button class="btn btn-sm btn-ghost">Stable</button>
+      </div>
+
+      <!-- Liquidity Pools -->
+      <div class="flex flex-col gap-3">
+        <!-- Pool 1: BTC/USDT -->
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div style="position: relative; width: 48px; height: 48px;">
+                  <div style="position: absolute; left: 0; width: 32px; height: 32px; background: #F7931A; border-radius: 50%; display: flex; align-items: center; justify-center; border: 2px solid var(--bg-primary);">
+                    <i class="fab fa-bitcoin" style="font-size: 16px; color: #fff;"></i>
+                  </div>
+                  <div style="position: absolute; right: 0; width: 32px; height: 32px; background: #26A17B; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-primary);">
+                    <i class="fas fa-dollar-sign" style="font-size: 14px; color: #fff;"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg">BTC/USDT</h3>
+                  <div class="text-xs text-secondary">Volatile Pair</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-bold text-xl" style="color: var(--success);">24.5%</div>
+                <div class="text-xs text-secondary">APY</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div>
+                <div class="text-xs text-secondary">Total Liquidity</div>
+                <div class="font-semibold">$125.5M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">24h Volume</div>
+                <div class="font-semibold">$45.2M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Your Share</div>
+                <div class="font-semibold">$2,500</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Rewards</div>
+                <div class="font-semibold" style="color: var(--success);">$1.68/day</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <button class="btn btn-primary flex-1">Add Liquidity</button>
+              <button class="btn btn-secondary flex-1">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pool 2: ETH/BNB -->
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div style="position: relative; width: 48px; height: 48px;">
+                  <div style="position: absolute; left: 0; width: 32px; height: 32px; background: #627EEA; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-primary);">
+                    <i class="fab fa-ethereum" style="font-size: 16px; color: #fff;"></i>
+                  </div>
+                  <div style="position: absolute; right: 0; width: 32px; height: 32px; background: #F0B90B; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-primary);">
+                    <i class="fas fa-coins" style="font-size: 14px; color: #000;"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg">ETH/BNB</h3>
+                  <div class="text-xs text-secondary">High Volume</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-bold text-xl" style="color: var(--success);">19.8%</div>
+                <div class="text-xs text-secondary">APY</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div>
+                <div class="text-xs text-secondary">Total Liquidity</div>
+                <div class="font-semibold">$89.3M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">24h Volume</div>
+                <div class="font-semibold">$32.1M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Your Share</div>
+                <div class="font-semibold">$3,250</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Rewards</div>
+                <div class="font-semibold" style="color: var(--success);">$1.76/day</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <button class="btn btn-primary flex-1">Add Liquidity</button>
+              <button class="btn btn-secondary flex-1">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pool 3: USDT/USDC -->
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div style="position: relative; width: 48px; height: 48px;">
+                  <div style="position: absolute; left: 0; width: 32px; height: 32px; background: #26A17B; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-primary);">
+                    <i class="fas fa-dollar-sign" style="font-size: 14px; color: #fff;"></i>
+                  </div>
+                  <div style="position: absolute; right: 0; width: 32px; height: 32px; background: #2775CA; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-primary);">
+                    <i class="fas fa-dollar-sign" style="font-size: 14px; color: #fff;"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg">USDT/USDC</h3>
+                  <div class="text-xs text-secondary">Stable Pair</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-bold text-xl" style="color: var(--success);">8.2%</div>
+                <div class="text-xs text-secondary">APY</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div>
+                <div class="text-xs text-secondary">Total Liquidity</div>
+                <div class="font-semibold">$256.8M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">24h Volume</div>
+                <div class="font-semibold">$78.5M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Your Share</div>
+                <div class="font-semibold">$3,000</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Rewards</div>
+                <div class="font-semibold" style="color: var(--success);">$0.67/day</div>
+              </div>
+            </div>
+
+            <div class="flex gap-2">
+              <button class="btn btn-primary flex-1">Add Liquidity</button>
+              <button class="btn btn-secondary flex-1">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pool 4: SOL/USDT -->
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-start justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div style="position: relative; width: 48px; height: 48px;">
+                  <div style="position: absolute; left: 0; width: 32px; height: 32px; background: linear-gradient(135deg, #9945FF 0%, #14F195 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-primary);">
+                    <i class="fas fa-sun" style="font-size: 14px; color: #fff;"></i>
+                  </div>
+                  <div style="position: absolute; right: 0; width: 32px; height: 32px; background: #26A17B; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-primary);">
+                    <i class="fas fa-dollar-sign" style="font-size: 14px; color: #fff;"></i>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg">SOL/USDT</h3>
+                  <div class="text-xs text-secondary">Trending</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="font-bold text-xl" style="color: var(--success);">22.3%</div>
+                <div class="text-xs text-secondary">APY</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div>
+                <div class="text-xs text-secondary">Total Liquidity</div>
+                <div class="font-semibold">$67.2M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">24h Volume</div>
+                <div class="font-semibold">$28.9M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Your Share</div>
+                <div class="font-semibold">$0</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Rewards</div>
+                <div class="font-semibold" style="color: var(--success);">-</div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary w-full">Add Liquidity</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Warning Card -->
+      <div class="card mt-4" style="background: var(--warning-bg); border: 1px solid var(--warning);">
+        <div class="card-body">
+          <div class="flex items-start gap-3">
+            <i class="fas fa-exclamation-triangle" style="color: var(--warning); font-size: 24px;"></i>
+            <div>
+              <div class="font-semibold mb-2" style="color: var(--warning);">Impermanent Loss Risk</div>
+              <div class="text-xs text-secondary">
+                Providing liquidity may result in impermanent loss if token prices diverge significantly. Higher APY pools typically carry higher risk. Always DYOR before providing liquidity.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="markets.html" class="nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Markets</span>
+      </a>
+      <a href="spot-trading.html" class="nav-item">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Trade</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+</body>
+</html>

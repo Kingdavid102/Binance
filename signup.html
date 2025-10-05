@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Binance</title>
+  <link rel="stylesheet" href="css/binance-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .auth-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 24px;
+      background: var(--background-color);
+    }
+    
+    .auth-logo {
+      width: 120px;
+      margin: 0 auto 32px;
+      display: block;
+    }
+    
+    .auth-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .auth-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    
+    .auth-form {
+      max-width: 400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--card-color);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .form-error {
+      color: var(--negative-color);
+      font-size: 14px;
+      margin-top: 8px;
+      min-height: 20px;
+    }
+    
+    .auth-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary-color);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    
+    .auth-btn:hover {
+      opacity: 0.9;
+    }
+    
+    .auth-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .auth-link {
+      text-align: center;
+      margin-top: 24px;
+      color: var(--text-secondary);
+    }
+    
+    .auth-link a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <img src="https://public.bnbstatic.com/static/images/common/logo.png" alt="Binance" class="auth-logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\' viewBox=\'0 0 120 40\'><rect fill=\'%23F0B90B\' width=\'120\' height=\'40\' rx=\'4\'/><text x=\'60\' y=\'25\' font-family=\'Arial\' font-size=\'18\' font-weight=\'bold\' fill=\'%23000\' text-anchor=\'middle\'>Binance</text></svg>'">
+    
+    <h1 class="auth-title">Create Account</h1>
+    <p class="auth-subtitle">Join millions of traders worldwide</p>
+    
+    <form class="auth-form" id="signupForm">
+      <div class="form-group">
+        <label for="fullName" class="form-label">Full Name</label>
+        <input type="text" id="fullName" class="form-input" placeholder="Enter your full name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" class="form-input" placeholder="Create a password" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" id="confirmPassword" class="form-input" placeholder="Confirm your password" required>
+      </div>
+      
+      <div class="form-error" id="signupError"></div>
+      
+      <button type="submit" class="auth-btn" id="signupBtn">
+        <i class="fas fa-user-plus"></i> Create Account
+      </button>
+    </form>
+    
+    <div class="auth-link">
+      Already have an account? <a href="index.html">Sign In</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const signupForm = document.getElementById('signupForm');
+      const signupError = document.getElementById('signupError');
+      const signupBtn = document.getElementById('signupBtn');
+
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        // Clear previous errors
+        signupError.textContent = '';
+        
+        // Validate inputs
+        if (!fullName || !email || !password || !confirmPassword) {
+          signupError.textContent = 'All fields are required';
+          return;
+        }
+        
+        if (password !== confirmPassword) {
+          signupError.textContent = 'Passwords do not match';
+          return;
+        }
+        
+        if (password.length < 6) {
+          signupError.textContent = 'Password must be at least 6 characters';
+          return;
+        }
+        
+        // Disable button
+        signupBtn.disabled = true;
+        signupBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+        
+        try {
+          const response = await fetch('/api/auth/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              fullName,
+              email,
+              password,
+            }),
+          });
+          
+          const data = await response.json();
+          
+          if (data.success) {
+            // Store user data and token
+            localStorage.setItem('currentUser', JSON.stringify(data.user));
+            localStorage.setItem('token', data.token);
+            
+            // Redirect to dashboard
+            window.location.href = 'dashboard.html';
+          } else {
+            signupError.textContent = data.message || 'Signup failed';
+            signupBtn.disabled = false;
+            signupBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+          }
+        } catch (error) {
+          console.error('[v0] Signup error:', error);
+          signupError.textContent = 'An error occurred. Please try again.';
+          signupBtn.disabled = false;
+          signupBtn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

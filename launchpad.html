@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launchpad - Binance</title>
+  <link rel="stylesheet" href="css/binance-premium.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <button class="btn-icon btn-ghost" onclick="window.location.href='dashboard.html'">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <div class="header-title">Launchpad</div>
+      <div class="header-right">
+        <button class="btn-icon btn-ghost">
+          <i class="fas fa-bell"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <div style="padding: var(--spacing-md);">
+      <div class="card" style="background: linear-gradient(135deg, #F0B90B 0%, #F8D12F 100%); color: #000;">
+        <div class="card-body">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-2xl font-bold mb-2">Discover New Projects</h2>
+              <p class="text-sm mb-4">Be the first to invest in promising crypto projects</p>
+              <button class="btn" style="background: #000; color: #F0B90B;">Learn More</button>
+            </div>
+            <i class="fas fa-rocket" style="font-size: 64px; opacity: 0.3;"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex gap-2 my-4" style="border-bottom: 1px solid var(--border-primary); padding-bottom: var(--spacing-sm);">
+        <button class="btn btn-sm btn-primary">Active</button>
+        <button class="btn btn-sm btn-ghost">Upcoming</button>
+        <button class="btn btn-sm btn-ghost">Completed</button>
+      </div>
+
+      <!-- Active Projects -->
+      <div class="flex flex-col gap-4">
+        <!-- Project 1 -->
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-start gap-3 mb-4">
+              <div style="width: 60px; height: 60px; background: var(--primary-bg); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-coins" style="font-size: 28px; color: var(--primary);"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-bold text-lg mb-1">ProjectX Token (PXT)</h3>
+                <p class="text-xs text-secondary mb-2">Next-generation DeFi protocol</p>
+                <div class="flex gap-2">
+                  <span class="badge badge-success">Live</span>
+                  <span class="badge badge-info">DeFi</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="flex justify-between text-xs mb-2">
+                <span class="text-secondary">Progress</span>
+                <span class="font-semibold">75%</span>
+              </div>
+              <div style="height: 8px; background: var(--bg-tertiary); border-radius: 4px; overflow: hidden;">
+                <div style="width: 75%; height: 100%; background: var(--success);"></div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div>
+                <div class="text-xs text-secondary">Token Price</div>
+                <div class="font-semibold">$0.05</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Total Raise</div>
+                <div class="font-semibold">$5M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Your Allocation</div>
+                <div class="font-semibold">1,000 PXT</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Ends In</div>
+                <div class="font-semibold" style="color: var(--danger);">2d 14h</div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary w-full">Commit BNB</button>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-start gap-3 mb-4">
+              <div style="width: 60px; height: 60px; background: var(--info-bg); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                <i class="fas fa-gamepad" style="font-size: 28px; color: var(--info);"></i>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-bold text-lg mb-1">GameFi World (GFW)</h3>
+                <p class="text-xs text-secondary mb-2">Play-to-earn gaming ecosystem</p>
+                <div class="flex gap-2">
+                  <span class="badge badge-success">Live</span>
+                  <span class="badge badge-warning">Gaming</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="flex justify-between text-xs mb-2">
+                <span class="text-secondary">Progress</span>
+                <span class="font-semibold">92%</span>
+              </div>
+              <div style="height: 8px; background: var(--bg-tertiary); border-radius: 4px; overflow: hidden;">
+                <div style="width: 92%; height: 100%; background: var(--success);"></div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+              <div>
+                <div class="text-xs text-secondary">Token Price</div>
+                <div class="font-semibold">$0.10</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Total Raise</div>
+                <div class="font-semibold">$10M</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Your Allocation</div>
+                <div class="font-semibold">500 GFW</div>
+              </div>
+              <div>
+                <div class="text-xs text-secondary">Ends In</div>
+                <div class="font-semibold" style="color: var(--danger);">5d 8h</div>
+              </div>
+            </div>
+
+            <button class="btn btn-primary w-full">Commit BNB</button>
+          </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="card" style="background: var(--warning-bg); border: 1px solid var(--warning);">
+          <div class="card-body">
+            <div class="flex items-start gap-3">
+              <i class="fas fa-lightbulb" style="color: var(--warning); font-size: 24px;"></i>
+              <div>
+                <div class="font-semibold mb-2" style="color: var(--warning);">How Launchpad Works</div>
+                <div class="text-xs text-secondary">
+                  1. Hold BNB in your wallet<br>
+                  2. Commit BNB to projects you like<br>
+                  3. Receive new tokens after sale ends<br>
+                  4. Your BNB is returned after distribution
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <a href="dashboard.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="markets.html" class="nav-item">
+        <i class="fas fa-chart-line"></i>
+        <span>Markets</span>
+      </a>
+      <a href="spot-trading.html" class="nav-item">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Trade</span>
+      </a>
+      <a href="defi-wallet.html" class="nav-item">
+        <i class="fas fa-wallet"></i>
+        <span>Wallet</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+    </nav>
+  </div>
+</body>
+</html>
